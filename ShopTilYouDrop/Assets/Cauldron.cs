@@ -8,7 +8,7 @@ public class Cauldron : MonoBehaviour {
     public float consumeDelaySeconds;
 
     private Dictionary<Ingredient, float> enterTimes;
-    private List<Ingredient> added;
+    private List<IngredientType> added;
 
 	void Start () {
         enterTimes = new Dictionary<Ingredient, float>();
@@ -43,8 +43,19 @@ public class Cauldron : MonoBehaviour {
     }
 
     private void consumeIngredient(Ingredient ingredient) {
-        //TODO: add ingredient to potion
+        added.Add(ingredient.type);
         Destroy(ingredient.gameObject);
+
+        if (added.Count >= 3) {
+            createPotion(added[0], added[1], added[2]);
+            added.Remove(0);
+            added.Remove(0);
+            added.Remove(0);
+        }
     }
 
+    private void createPotion(IngredientType one, IngredientType two, IngredientType three) {
+        Potion potion = Potions.instance().createPotion(one, two, three);
+        // TODO: activate potion effect
+    }
 }

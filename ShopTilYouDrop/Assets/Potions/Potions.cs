@@ -19,8 +19,18 @@ class Potions {
         createdPotions = new List<CreatedPotion>();
     }
 
-    private void add() {
+    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries) {
+        Potion potion = new Potion(primary1, primary2, primary3, secondaries);
+        HashSet<Aspects.Primary> primaries = new HashSet<Aspects.Primary>();
+        primaries.Add(primary1);
+        primaries.Add(primary2);
+        primaries.Add(primary3);
 
+        if (!potions.ContainsKey(primaries)) {
+            potions.Add(primaries, new List<Potion>());
+        }
+
+        potions[primaries].Add(potion);
     }
 
     public Potion createPotion(IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
