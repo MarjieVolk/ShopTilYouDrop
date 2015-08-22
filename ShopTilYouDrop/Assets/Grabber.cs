@@ -34,7 +34,7 @@ public class Grabber : MonoBehaviour
             GrabObject(cursorWorldPostion);
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0) && joint.connectedBody != null)
         {
             joint.connectedBody.angularDrag = oldAngularDrag;
             joint.connectedBody.drag = oldLinearDrag;
@@ -44,12 +44,13 @@ public class Grabber : MonoBehaviour
         lastPosition = cursorWorldPostion;
     }
 
-    private void GrabObject(Vector2 cursorWorldPostion)
-    {
+    private void GrabObject(Vector2 cursorWorldPostion) {
+        Debug.Log("Trying to grab");
         Rigidbody2D grabbedObject = FindGrabbableUnder(cursorWorldPostion);
 
         if (grabbedObject != null)
         {
+            Debug.Log("Really grabbing");
             joint.anchor = gameObject.transform.InverseTransformPoint(cursorWorldPostion);
             joint.connectedBody = grabbedObject;
             joint.connectedAnchor = grabbedObject.transform.InverseTransformPoint(cursorWorldPostion);
