@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Cauldron : MonoBehaviour {
 
-    private Dictionary<Ingredient, float> enterTimes;
-
     public float consumeDelaySeconds;
+
+    private Dictionary<Ingredient, float> enterTimes;
+    private List<Ingredient> added;
 
 	void Start () {
         enterTimes = new Dictionary<Ingredient, float>();
@@ -44,4 +46,5 @@ public class Cauldron : MonoBehaviour {
         //TODO: add ingredient to potion
         Destroy(ingredient.gameObject);
     }
+
 }
