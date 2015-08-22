@@ -13,16 +13,20 @@ public class Cauldron : MonoBehaviour {
 	}
 	
 	void Update () {
+        List<Ingredient> toConsume = new List<Ingredient>();
 	    foreach (Ingredient ingredient in enterTimes.Keys) {
             if (Time.time - enterTimes[ingredient] >= consumeDelaySeconds) {
-                enterTimes.Remove(ingredient);
-                consumeIngredient(ingredient);
+                toConsume.Add(ingredient);
             }
+        }
+
+        foreach (Ingredient ingredient in toConsume) {
+            enterTimes.Remove(ingredient);
+            consumeIngredient(ingredient);
         }
 	}
 
     void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log("Object entered collision: " + collision.gameObject);
         Ingredient collidingIngredient = collision.gameObject.GetComponent<Ingredient>();
         if (collidingIngredient != null) {
             enterTimes.Add(collidingIngredient, Time.time);
@@ -30,7 +34,6 @@ public class Cauldron : MonoBehaviour {
     }
 
     void OnTriggerExit2D(Collider2D collision) {
-        Debug.Log("Object exited collision: " + collision.gameObject);
         Ingredient collidingIngredient = collision.gameObject.GetComponent<Ingredient>();
         if (collidingIngredient != null) {
             enterTimes.Remove(collidingIngredient);
