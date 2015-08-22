@@ -5,19 +5,28 @@ using System.Text;
 
 class Potions {
 
-    public static const Potions INSTANCE = new Potions();
+    private static Potions INSTANCE = new Potions();
+
+    public static Potions instance() {
+        return INSTANCE;
+    }
 
     private Dictionary<HashSet<Aspects.Primary>, List<Potion>> potions;
     private List<CreatedPotion> createdPotions;
 
     Potions() {
+        potions = new Dictionary<HashSet<Aspects.Primary>, List<Potion>>();
+        createdPotions = new List<CreatedPotion>();
+    }
+
+    private void add() {
 
     }
 
     public Potion createPotion(IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
-        IngredientData data1 = Ingredients.INSTANCE.getIngredient(ingredient1);
-        IngredientData data2 = Ingredients.INSTANCE.getIngredient(ingredient2);
-        IngredientData data3 = Ingredients.INSTANCE.getIngredient(ingredient3);
+        IngredientData data1 = Ingredients.instance().getIngredient(ingredient1);
+        IngredientData data2 = Ingredients.instance().getIngredient(ingredient2);
+        IngredientData data3 = Ingredients.instance().getIngredient(ingredient3);
 
         List<Aspects.Secondary> secondaries = new List<Aspects.Secondary>();
         secondaries.Add(data1.secondary);

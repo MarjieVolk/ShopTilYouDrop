@@ -5,7 +5,11 @@ using System.Text;
 
 class Ingredients {
 
-    public static const Ingredients INSTANCE = new Ingredients();
+    private static Ingredients INSTANCE = new Ingredients();
+
+    public static Ingredients instance() {
+        return INSTANCE;
+    }
 
     private Dictionary<IngredientType, IngredientData> ingredients;
 
