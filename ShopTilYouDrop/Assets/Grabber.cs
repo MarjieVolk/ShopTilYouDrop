@@ -45,12 +45,10 @@ public class Grabber : MonoBehaviour
     }
 
     private void GrabObject(Vector2 cursorWorldPostion) {
-        Debug.Log("Trying to grab");
         Rigidbody2D grabbedObject = FindGrabbableUnder(cursorWorldPostion);
 
         if (grabbedObject != null)
         {
-            Debug.Log("Really grabbing");
             joint.anchor = gameObject.transform.InverseTransformPoint(cursorWorldPostion);
             joint.connectedBody = grabbedObject;
             joint.connectedAnchor = grabbedObject.transform.InverseTransformPoint(cursorWorldPostion);

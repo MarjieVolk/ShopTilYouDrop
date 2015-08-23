@@ -22,6 +22,7 @@ class Potions {
         defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new HashSet<Aspects.Secondary>());
 
         add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new HashSet<Aspects.Secondary>());
+        createPotion(IngredientType.CHEESE, IngredientType.CHEESE, IngredientType.CHEESE);
     }
 
     private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries) {

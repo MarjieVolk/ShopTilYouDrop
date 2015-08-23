@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+using System.Collections.Generic;
 
 public class PauseMenuController : MonoBehaviour {
 
@@ -34,9 +34,10 @@ public class PauseMenuController : MonoBehaviour {
                 potionDisplay.transform.parent = potionsParent.transform;
 
                 // TODO: get correct images for ingrediants, potion, and aspects
-                potionDisplay.transform.Find("Ingredient Image 1").gameObject.GetComponent<Image>().sprite = ingredientSprite;
-                potionDisplay.transform.Find("Ingredient Image 2").gameObject.GetComponent<Image>().sprite = ingredientSprite;
-                potionDisplay.transform.Find("Ingredient Image 3").gameObject.GetComponent<Image>().sprite = ingredientSprite;
+                List<IngredientType> ingredients = potion.getIngredients();
+                potionDisplay.transform.Find("Ingredient Image 1").gameObject.GetComponent<Image>().sprite = IngredientRenderer.instance().getSprite(ingredients[0]);
+                potionDisplay.transform.Find("Ingredient Image 2").gameObject.GetComponent<Image>().sprite = IngredientRenderer.instance().getSprite(ingredients[0]);
+                potionDisplay.transform.Find("Ingredient Image 3").gameObject.GetComponent<Image>().sprite = IngredientRenderer.instance().getSprite(ingredients[0]);
                 potionDisplay.transform.Find("Potion Details/Potion Image").gameObject.GetComponent<Image>().sprite = potionSprite;
                 potionDisplay.transform.Find("Potion Details/Aspect Icons/Aspect 1").gameObject.GetComponent<Image>().sprite = aspectSprite;
                 potionDisplay.transform.Find("Potion Details/Aspect Icons/Aspect 2").gameObject.GetComponent<Image>().sprite = aspectSprite;
