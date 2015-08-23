@@ -12,6 +12,7 @@ public class Cauldron : MonoBehaviour {
 
     void Start() {
         enterTimes = new Dictionary<Ingredient, float>();
+        added = new List<IngredientType>();
     }
 
     void Update() {
