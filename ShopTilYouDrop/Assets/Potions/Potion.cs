@@ -41,12 +41,12 @@ public class Potion {
         _effect = effect;
     }
 
-    public HashSet<Aspects.Primary> getPrimaries() {
-        return new HashSet<Aspects.Primary>(primaries);
+    public List<Aspects.Primary> getPrimaries() {
+        return new List<Aspects.Primary>(primaries);
     }
 
-    public HashSet<Aspects.Secondary> getSecondaries() {
-        return new HashSet<Aspects.Secondary>(secondaries);
+    public List<Aspects.Secondary> getSecondaries() {
+        return new List<Aspects.Secondary>(secondaries);
     }
 
     public void TriggerEffect() {
