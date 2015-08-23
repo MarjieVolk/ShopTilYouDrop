@@ -19,13 +19,13 @@ class Potions {
         potions = new Dictionary<HashSet<Aspects.Primary>, List<Potion>>();
         createdPotions = new List<CreatedPotion>();
 
-        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new HashSet<Aspects.Secondary>());
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new HashSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
 
-        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new HashSet<Aspects.Secondary>());
+        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new HashSet<Aspects.Secondary>(), PotionSlot.HEAD, Aspects.Secondary.NONE, null);
     }
 
-    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries) {
-        Potion potion = new Potion(primary1, primary2, primary3, secondaries);
+    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+        Potion potion = new Potion(primary1, primary2, primary3, secondaries, slot, type, effect);
         HashSet<Aspects.Primary> primaries = new HashSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);

@@ -4,8 +4,13 @@ using System.Linq;
 using System.Text;
 
 public class ZombieTorso : Effect {
-    public override void trigger() {
+    public override void Trigger() {
         // Give the player Zombie torso.
         // Give zombie stench power.
+    }
+
+    public override void UnTrigger()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class PlayerSpriteController : MonoBehaviour {
+
+    private IDictionary<PotionSlot, Effect> _potionEffects;
+
+    public PlayerSpriteController()
+    {
+        _potionEffects = new Dictionary<PotionSlot, Effect>();
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +21,29 @@ public class PlayerSpriteController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void setEffect(PotionSlot part, Effect effect)
+    {
+        Effect currentEffect = _potionEffects[part];
+        if (currentEffect != null)
+        {
+            currentEffect.UnTrigger();
+        }
+
+        _potionEffects[part] = effect;
+        if (effect != null)
+        {
+            effect.Trigger();
+        }
+    }
+
+    public void setBodyParts(BodyPart[] parts, Aspects.Secondary type)
+    {
+        foreach (BodyPart part in parts)
+        {
+            setBodyPart(part, type);
+        }
+    }
 
     public void setBodyPart(BodyPart part, Aspects.Secondary type) {
         Transform partTransform;

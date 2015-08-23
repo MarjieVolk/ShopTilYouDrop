@@ -57,6 +57,6 @@ public class Cauldron : MonoBehaviour {
 
     private void createPotion(IngredientType one, IngredientType two, IngredientType three) {
         Potion potion = Potions.instance().createPotion(one, two, three);
-        // TODO: activate potion effect
+        potion.TriggerEffect();
     }
 }

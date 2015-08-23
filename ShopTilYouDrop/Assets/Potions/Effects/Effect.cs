@@ -8,5 +8,7 @@ abstract public class Effect {
     public Effect() {
     }
 
-    public abstract void trigger();
+    public abstract void Trigger();
+
+    public abstract void UnTrigger();
 }
