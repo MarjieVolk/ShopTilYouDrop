@@ -27,6 +27,7 @@ class Potion {
     }
 
     public void triggerEffect() {
+        // Send a potion message?
         //effect.trigger();
     }
 }
