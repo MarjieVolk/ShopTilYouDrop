@@ -57,10 +57,8 @@ class Potions {
         return new List<CreatedPotion>(createdPotions);
     }
 
-    // Note (marjie): I'm choosing to only allow removing via index, because if we're displaying this in the UI as an ordered list
-    // and the same potion can be created with the same ingredients multiple times, we always want to remove the exact one clicked on
-    public void removeLoggedPotion(int index) {
-        createdPotions.RemoveAt(index);
+    public void removeLoggedPotion(CreatedPotion potion) {
+        createdPotions.Remove(potion);
     }
 
     private void logPotionCreation(Potion potionMade, IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
