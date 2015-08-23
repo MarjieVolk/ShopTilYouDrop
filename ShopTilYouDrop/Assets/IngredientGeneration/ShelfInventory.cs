@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ShelfInventory : MonoBehaviour {
 
@@ -40,7 +41,7 @@ public class ShelfInventory : MonoBehaviour {
     {
         for (int i = 0; i < NumShelves; i++)
         {
-            shelfSpace[i] += xSpeed;
+            shelfSpace[i] += Math.Abs(xSpeed);
         }
 
         Shuffle(generators);
@@ -53,7 +54,7 @@ public class ShelfInventory : MonoBehaviour {
                 {
                     float placedWidth = instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
                     shelfSpace[shelfIndex] = -placedWidth;
-                    instantiated.transform.position = SpawnPositions[shelfIndex] - new Vector2(placedWidth / 2, 0);
+                    instantiated.transform.position = SpawnPositions[shelfIndex] - Math.Sign(xSpeed) * new Vector2(placedWidth / 2, 0);
                     instantiated.GetComponent<Rigidbody2D>().isKinematic = true;
                     instantiated.AddComponent<ConstantMovement>().Step = new Vector2(xSpeed, 0);
                     instantiated.layer = SpawnedObjectsLayer.getFirstSet();
