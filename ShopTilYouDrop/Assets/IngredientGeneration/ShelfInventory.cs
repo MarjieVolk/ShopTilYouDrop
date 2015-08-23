@@ -47,13 +47,13 @@ public class ShelfInventory : MonoBehaviour {
             for (int shelfIndex = 0; shelfIndex < NumShelves; shelfIndex++)
             {
                 GameObject instantiated = generator.TryPlaceIngredient(shelfSpace, shelfIndex);
-                while (instantiated != null)
+                if (instantiated != null)
                 {
-                    shelfSpace[shelfIndex] = (-1 / 2.0f) * instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
-                    instantiated.transform.position = SpawnPositions[shelfIndex];
+                    float placedWidth = instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
+                    shelfSpace[shelfIndex] = -placedWidth;
+                    instantiated.transform.position = SpawnPositions[shelfIndex] - new Vector2(placedWidth / 2, 0);
                     instantiated.GetComponent<Rigidbody2D>().isKinematic = true;
                     instantiated.AddComponent<ConstantMovement>().Step = new Vector2(xSpeed, 0);
-                    instantiated = generator.TryPlaceIngredient(shelfSpace, shelfIndex);
                 }
             }
         }
@@ -72,11 +72,12 @@ public class ShelfInventory : MonoBehaviour {
         int i = 0;
         while (i < list.Count)
         {
-            int target = rng.Next(i, list.Count - 1);
+            int target = rng.Next(i, list.Count);
             T temp = list[i];
             list[i] = list[target];
             list[target] = temp;
             i++;
         }
+        Debug.Log(list[0].ToString() + ", " + list[1].ToString() + ", " + list[2].ToString());
     }
 }
