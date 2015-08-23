@@ -7,14 +7,17 @@ class Potion {
 
     private HashSet<Aspects.Primary> primaries;
     private HashSet<Aspects.Secondary> secondaries;
+    private Effect effect;
 
-    public Potion(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries) {
+    public Potion(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3,
+                  HashSet<Aspects.Secondary> secondaries, Effect effect) {
         primaries = new HashSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
 
         this.secondaries = secondaries;
+        this.effect = effect;
     }
 
     public HashSet<Aspects.Primary> getPrimaries() {
@@ -23,5 +26,9 @@ class Potion {
 
     public HashSet<Aspects.Secondary> getSecondaries() {
         return new HashSet<Aspects.Secondary>(secondaries);
+    }
+
+    public void triggerEffect() {
+        effect.trigger();
     }
 }

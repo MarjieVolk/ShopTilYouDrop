@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Aspects {
 
-	public enum Primary {
+    public enum Primary {
         DAIRY,
         MEAT,
         GRAIN,
