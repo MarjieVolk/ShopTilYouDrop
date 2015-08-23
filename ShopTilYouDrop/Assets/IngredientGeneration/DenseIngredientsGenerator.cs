@@ -28,7 +28,7 @@ public class DenseIngredientsGenerator : MonoBehaviour, IIngredientGenerator {
         {
             currentIngredient = selectIngredient();
         }
-        float requiredSpace = currentIngredient.GetComponent<SpriteRenderer>().bounds.size.x / 2;
+
         if (shelfSpace[shelfIndex] > 0)
         {
             return Instantiate(currentIngredient);

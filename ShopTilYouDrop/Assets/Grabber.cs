@@ -3,9 +3,8 @@ using System.Collections;
 
 public class Grabber : MonoBehaviour
 {
-    private Camera camera;
+    private Camera sceneCamera;
     private SpringJoint2D joint;
-    private Vector2 lastPosition;
 
     [SerializeField]
     private float linearDrag;
@@ -19,14 +18,14 @@ public class Grabber : MonoBehaviour
     void Start()
     {
         // assumption: exactly one camera in scene
-        camera = FindObjectOfType<Camera>();
+        sceneCamera = FindObjectOfType<Camera>();
         joint = gameObject.GetComponent<SpringJoint2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 cursorWorldPostion = camera.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 cursorWorldPostion = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
         gameObject.transform.position = cursorWorldPostion;
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -40,8 +39,6 @@ public class Grabber : MonoBehaviour
             joint.connectedBody.drag = oldLinearDrag;
             joint.connectedBody = null;
         }
-
-        lastPosition = cursorWorldPostion;
     }
 
     private void GrabObject(Vector2 cursorWorldPostion) {
