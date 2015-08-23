@@ -24,10 +24,11 @@ public class PlayerSpriteController : MonoBehaviour {
 
     public void setEffect(PotionSlot part, Effect effect)
     {
-        Effect currentEffect = _potionEffects[part];
-        if (currentEffect != null)
-        {
-            currentEffect.UnTrigger();
+        if (_potionEffects.ContainsKey(part)) {
+            Effect currentEffect = _potionEffects[part];
+            if (currentEffect != null) {
+                currentEffect.UnTrigger();
+            }
         }
 
         _potionEffects[part] = effect;

@@ -19,20 +19,22 @@ public class Potion {
         }
     }
 
-    private HashSet<Aspects.Primary> primaries;
-    private HashSet<Aspects.Secondary> secondaries;
+    private List<Aspects.Primary> primaries;
+    private List<Aspects.Secondary> secondaries;
     private PotionSlot _slot;
     private Aspects.Secondary _type;
     private Effect _effect;
 
     public Potion(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3,
-                  HashSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
-        primaries = new HashSet<Aspects.Primary>();
+                  List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+        primaries = new List<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
+        primaries.Sort();
 
         this.secondaries = secondaries;
+        secondaries.Sort();
 
         _slot = slot;
         _type = type;

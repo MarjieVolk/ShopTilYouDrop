@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 class Potions {
 
@@ -11,25 +12,29 @@ class Potions {
         return INSTANCE;
     }
 
-    private Dictionary<HashSet<Aspects.Primary>, List<Potion>> potions;
+    private Dictionary<List<Aspects.Primary>, List<Potion>> potions;
     private List<CreatedPotion> createdPotions;
     private Potion defaultPotion;
 
     Potions() {
-        potions = new Dictionary<HashSet<Aspects.Primary>, List<Potion>>();
+        potions = new Dictionary<List<Aspects.Primary>, List<Potion>>(new ListComparer());
         createdPotions = new List<CreatedPotion>();
 
-        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new HashSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new List<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
 
-        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new HashSet<Aspects.Secondary>(), PotionSlot.HEAD, Aspects.Secondary.NONE, null);
+        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new List<Aspects.Secondary>(), PotionSlot.HEAD, Aspects.Secondary.SLIME, null);
+        List<Aspects.Secondary> secondaries = new List<Aspects.Secondary>();
+        secondaries.Add(Aspects.Secondary.FIRE);
+        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, secondaries, PotionSlot.HEAD, Aspects.Secondary.BLOOD, null);
     }
 
-    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
         Potion potion = new Potion(primary1, primary2, primary3, secondaries, slot, type, effect);
-        HashSet<Aspects.Primary> primaries = new HashSet<Aspects.Primary>();
+        List<Aspects.Primary> primaries = new List<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
+        primaries.Sort();
 
         if (!potions.ContainsKey(primaries)) {
             potions.Add(primaries, new List<Potion>());
@@ -47,6 +52,7 @@ class Potions {
         secondaries.Add(data1.secondary);
         secondaries.Add(data1.secondary);
         secondaries.Add(data1.secondary);
+        secondaries.Sort();
 
         Potion createdPotion = getBestMatch(data1.primary, data2.primary, data3.primary, secondaries);
         logPotionCreation(createdPotion, ingredient1, ingredient2, ingredient3);
@@ -66,9 +72,16 @@ class Potions {
     }
 
     private Potion getBestMatch(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries) {
-        HashSet<Aspects.Primary> primaries = new HashSet<Aspects.Primary>();
+        List<Aspects.Primary> primaries = new List<Aspects.Primary>();
+        primaries.Add(primary1);
+        primaries.Add(primary2);
+        primaries.Add(primary3);
+        primaries.Sort();
 
         if (!potions.ContainsKey(primaries)) {
+            foreach (List<Aspects.Primary> list in potions.Keys) {
+                Debug.Log("(" + list[0] + ", " + list[1] + ", " + list[2] + ") count=" + list.Count);
+            }
             return defaultPotion;
         }
 
@@ -90,5 +103,22 @@ class Potions {
         }
 
         return bestMatch;
+    }
+
+    private class ListComparer : IEqualityComparer<List<Aspects.Primary>> {
+
+        public bool Equals(List<Aspects.Primary> x, List<Aspects.Primary> y) {
+            return x.SequenceEqual(y);
+        }
+
+        public int GetHashCode(List<Aspects.Primary> obj) {
+            int val = 0;
+            int multiplier = 1;
+            foreach (Aspects.Primary aspect in obj) {
+                val += ((int) aspect) * multiplier;
+                multiplier *= 10;
+            }
+            return val;
+        }
     }
 }
