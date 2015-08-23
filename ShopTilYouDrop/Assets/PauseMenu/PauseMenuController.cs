@@ -16,7 +16,7 @@ public class PauseMenuController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetKeyDown(KeyCode.Escape)) {
+	    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space)) {
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
             potionMenu.showPotionsTab();
