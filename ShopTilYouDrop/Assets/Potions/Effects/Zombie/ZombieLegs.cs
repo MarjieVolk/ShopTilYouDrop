@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 public class ZombieLegs : Effect {
-    public void trigger() {
+    public override void trigger() {
         // Give the player Zombie legs.
         // Give stagger 'ability'.
     }

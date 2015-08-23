@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 public class ZombieBreath : Effect {
-    public void trigger() {
+    public override void trigger() {
         // Trigger a cloud of stench that drives away bystanders.
     }
 }
