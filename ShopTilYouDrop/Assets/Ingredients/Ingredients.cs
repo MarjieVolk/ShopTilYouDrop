@@ -15,7 +15,7 @@ class Ingredients {
 
     Ingredients() {
         ingredients = new Dictionary<IngredientType, IngredientData>();
-        add(IngredientType.CHEESE, Aspects.Primary.DAIRY, Aspects.Secondary.NONE);
+        add(IngredientType.CHEESE, Aspects.Primary.DAIRY, Aspects.Secondary.FIRE);
     }
 
     public IngredientData getIngredient(IngredientType type) {
