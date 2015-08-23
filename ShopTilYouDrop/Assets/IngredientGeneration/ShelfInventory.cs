@@ -13,6 +13,8 @@ public class ShelfInventory : MonoBehaviour {
 
     public float xSpeed;
 
+    public LayerMask SpawnedObjectsLayer;
+
     // The amount of space available on each shelf
     private IList<float> shelfSpace;
 
@@ -54,6 +56,7 @@ public class ShelfInventory : MonoBehaviour {
                     instantiated.transform.position = SpawnPositions[shelfIndex] - new Vector2(placedWidth / 2, 0);
                     instantiated.GetComponent<Rigidbody2D>().isKinematic = true;
                     instantiated.AddComponent<ConstantMovement>().Step = new Vector2(xSpeed, 0);
+                    instantiated.layer = SpawnedObjectsLayer.getFirstSet();
                 }
             }
         }

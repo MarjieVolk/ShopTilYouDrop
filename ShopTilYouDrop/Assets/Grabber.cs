@@ -6,6 +6,8 @@ public class Grabber : MonoBehaviour
     private Camera sceneCamera;
     private SpringJoint2D joint;
 
+    // The layer to which grabbed objects are moved.
+    public LayerMask GrabbedObjectsMovedTo;
     [SerializeField]
     private float linearDrag;
     [SerializeField]
@@ -58,6 +60,7 @@ public class Grabber : MonoBehaviour
 
             Destroy(grabbedObject.GetComponent<ConstantMovement>());
             grabbedObject.isKinematic = false;
+            grabbedObject.gameObject.layer = GrabbedObjectsMovedTo.getFirstSet();
         }
     }
 
