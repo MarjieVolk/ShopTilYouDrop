@@ -13,10 +13,15 @@ class Potions {
 
     private Dictionary<HashSet<Aspects.Primary>, List<Potion>> potions;
     private List<CreatedPotion> createdPotions;
+    private Potion defaultPotion;
 
     Potions() {
         potions = new Dictionary<HashSet<Aspects.Primary>, List<Potion>>();
         createdPotions = new List<CreatedPotion>();
+
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new HashSet<Aspects.Secondary>());
+
+        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new HashSet<Aspects.Secondary>());
     }
 
     private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, HashSet<Aspects.Secondary> secondaries) {
@@ -64,6 +69,11 @@ class Potions {
 
     private Potion getBestMatch(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries) {
         HashSet<Aspects.Primary> primaries = new HashSet<Aspects.Primary>();
+
+        if (!potions.ContainsKey(primaries)) {
+            return defaultPotion;
+        }
+
         List<Potion> primaryMatches = potions[primaries];
 
         Potion bestMatch = null;
