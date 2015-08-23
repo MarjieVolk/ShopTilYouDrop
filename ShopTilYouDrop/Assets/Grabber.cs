@@ -8,10 +8,8 @@ public class Grabber : MonoBehaviour
 
     // The layer to which grabbed objects are moved.
     public LayerMask GrabbedObjectsMovedTo;
-    [SerializeField]
-    private float linearDrag;
-    [SerializeField]
-    private float angularDrag;
+    public float linearDrag;
+    public float angularDrag;
 
     private float oldLinearDrag;
     private float oldAngularDrag;
@@ -30,7 +28,7 @@ public class Grabber : MonoBehaviour
         Vector2 cursorWorldPostion = sceneCamera.ScreenToWorldPoint(Input.mousePosition);
         gameObject.transform.position = cursorWorldPostion;
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0) && joint.connectedBody == null)
         {
             GrabObject(cursorWorldPostion);
         }
