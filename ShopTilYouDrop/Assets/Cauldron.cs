@@ -10,13 +10,13 @@ public class Cauldron : MonoBehaviour {
     private Dictionary<Ingredient, float> enterTimes;
     private List<IngredientType> added;
 
-	void Start () {
+    void Start() {
         enterTimes = new Dictionary<Ingredient, float>();
-	}
-	
-	void Update () {
+    }
+
+    void Update() {
         List<Ingredient> toConsume = new List<Ingredient>();
-	    foreach (Ingredient ingredient in enterTimes.Keys) {
+        foreach (Ingredient ingredient in enterTimes.Keys) {
             if (Time.time - enterTimes[ingredient] >= consumeDelaySeconds) {
                 toConsume.Add(ingredient);
             }
@@ -26,7 +26,7 @@ public class Cauldron : MonoBehaviour {
             enterTimes.Remove(ingredient);
             consumeIngredient(ingredient);
         }
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D collision) {
         Ingredient collidingIngredient = collision.gameObject.GetComponent<Ingredient>();

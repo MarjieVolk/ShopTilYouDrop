@@ -60,6 +60,9 @@ public class Grabber : MonoBehaviour
 
             oldLinearDrag = grabbedObject.drag;
             grabbedObject.drag = linearDrag;
+
+            Destroy(grabbedObject.GetComponent<ConstantMovement>());
+            grabbedObject.isKinematic = false;
         }
     }
 
