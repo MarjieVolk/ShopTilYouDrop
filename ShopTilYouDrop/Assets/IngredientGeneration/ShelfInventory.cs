@@ -78,6 +78,5 @@ public class ShelfInventory : MonoBehaviour {
             list[target] = temp;
             i++;
         }
-        Debug.Log(list[0].ToString() + ", " + list[1].ToString() + ", " + list[2].ToString());
     }
 }
