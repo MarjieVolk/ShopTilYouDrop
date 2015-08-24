@@ -19,6 +19,18 @@ public class PotionDescriptor : MonoBehaviour {
 	void Start () {
         foreach (Aspects.Secondary aspect in Enum.GetValues(typeof(Aspects.Secondary)))
         {
+            if (aspect == Aspects.Secondary.NONE)
+            {
+                Potions.instance().add(
+                    PrimaryAspects[0],
+                    PrimaryAspects[1],
+                    PrimaryAspects[2],
+                    new MultiSet<Aspects.Secondary>(),
+                    Slot,
+                    aspect,
+                    null);
+                continue;
+            }
             Effect effect = getEffectForAspect(aspect);
             Potions.instance().add(
                 PrimaryAspects[0],

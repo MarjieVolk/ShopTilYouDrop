@@ -45,8 +45,8 @@ class Potions {
 
         MultiSet<Aspects.Secondary> secondaries = new MultiSet<Aspects.Secondary>();
         secondaries.Add(data1.secondary);
-        secondaries.Add(data1.secondary);
-        secondaries.Add(data1.secondary);
+        secondaries.Add(data2.secondary);
+        secondaries.Add(data3.secondary);
 
         Potion createdPotion = getBestMatch(data1.primary, data2.primary, data3.primary, secondaries);
         logPotionCreation(createdPotion, ingredient1, ingredient2, ingredient3);
@@ -70,6 +70,9 @@ class Potions {
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
+
+        Debug.Log("Primaries:" + primaries);
+        Debug.Log("Secondaries:" + secondaries);
 
         if (!potions.ContainsKey(primaries)) {
             Debug.Log("No key for " + primaries.ToString() + " count=" + primaries.Count);
