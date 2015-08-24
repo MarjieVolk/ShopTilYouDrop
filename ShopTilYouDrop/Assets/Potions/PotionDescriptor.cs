@@ -24,7 +24,7 @@ public class PotionDescriptor : MonoBehaviour {
                 PrimaryAspects[0],
                 PrimaryAspects[1],
                 PrimaryAspects[2],
-                new List<Aspects.Secondary>() { aspect },
+                new MultiSet<Aspects.Secondary>() { aspect, aspect, aspect },
                 Slot,
                 aspect,
                 effect);
