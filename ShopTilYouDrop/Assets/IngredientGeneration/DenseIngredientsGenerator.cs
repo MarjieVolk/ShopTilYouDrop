@@ -40,4 +40,8 @@ public class DenseIngredientsGenerator : MonoBehaviour, IIngredientGenerator {
     {
         return ingredients[Random.Range(0, ingredients.Length)];
     }
+
+    void OnDestroy() {
+        shelf.unregisterGenerator(this);
+    }
 }

@@ -71,6 +71,10 @@ public class ShelfInventory : MonoBehaviour {
         generators.Add(generator);
     }
 
+    public void unregisterGenerator(IIngredientGenerator generator) {
+        generators.Remove(generator);
+    }
+
     private static System.Random rng = new System.Random();
 
     // Fisher-Yates

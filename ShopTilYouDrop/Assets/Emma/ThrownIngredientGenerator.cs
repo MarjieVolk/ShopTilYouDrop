@@ -2,46 +2,36 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ThrownIngredientGenerator : MonoBehaviour, IIngredientGenerator {
+public class ThrownIngredientGenerator : MonoBehaviour {
 
 	// For thrown objects, this value should be pretty high.
 	// The more ingredients thrown, the higher this value should be for each one.
 	public float MeanTimeBetweenAppearances;
 	public IngredientType ingredient;
-
-    public AudioClip[] quips;
 	
 	private static System.Random random = new System.Random();
 	
-	private PasserbyInventory shelf;
+	private PasserbyInventory[] inventories;
 	private float nextSpawnTime;
-
-    private RandomizedAudioPlayer audioPlayer;
 	
 	void Start () {
 		random = new System.Random();
-		shelf = FindObjectOfType<PasserbyInventory>();
-		shelf.registerGenerator(this);
-		
-		nextSpawnTime = MeanTimeBetweenAppearances;
+		inventories = FindObjectsOfType<PasserbyInventory>();
 
-        audioPlayer = gameObject.AddComponent<RandomizedAudioPlayer>();
+        nextSpawnTime = SampleDelay();
 	}
-	
-	public IngredientType? TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex)
-	{
-		if (Time.time > nextSpawnTime)
-		{
-            audioPlayer.playSound(quips);
-			nextSpawnTime += SampleDelay();
-			return ingredient;
-		}
-		
-		return null;
-	}
+
+    void Update() {
+        if (Time.time > nextSpawnTime) {
+            nextSpawnTime += SampleDelay();
+            inventories[random.Next(inventories.Length)].throwIngredient(ingredient);
+            PasserbyQuipPlayer.instance().playQuip();
+        }
+    }
 	
 	private float SampleDelay()
 	{
-		return -1 * (float) System.Math.Log(1 - random.NextDouble(), System.Math.E) * MeanTimeBetweenAppearances;
+        return (float) random.NextDouble() * MeanTimeBetweenAppearances * 2;
+        //return -1 * (float) System.Math.Log(1 - random.NextDouble(), System.Math.E) * MeanTimeBetweenAppearances;
 	}
 }

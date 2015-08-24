@@ -42,4 +42,8 @@ public class SparseIngredientGenerator : MonoBehaviour, IIngredientGenerator {
         
         return -1 * (float) System.Math.Log(1 - random.NextDouble(), System.Math.E) * MeanTimeBetweenAppearances;
     }
+
+    void OnDestroy() {
+        shelf.unregisterGenerator(this);
+    }
 }

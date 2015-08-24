@@ -20,7 +20,7 @@ class Potions {
         potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>();
         createdPotions = new List<CreatedPotion>();
 
-        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new MultiSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new MultiSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.UNKNOWN, null);
     }
 
     public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, MultiSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
