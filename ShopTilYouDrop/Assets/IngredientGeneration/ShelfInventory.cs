@@ -55,7 +55,7 @@ public class ShelfInventory : MonoBehaviour {
                     instantiated.GetComponent<Ingredient>().type = (IngredientType)type;
                     instantiated.GetComponent<Ingredient>().InitializeGameObject();
 
-                    float placedWidth = instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
+                    float placedWidth = instantiated.GetComponent<Collider2D>().bounds.size.x;
                     shelfSpace[shelfIndex] = -placedWidth;
                     instantiated.transform.position = SpawnPositions[shelfIndex] - Math.Sign(xSpeed) * new Vector3(placedWidth / 2, 0, 0);
                     instantiated.GetComponent<Rigidbody2D>().isKinematic = true;
