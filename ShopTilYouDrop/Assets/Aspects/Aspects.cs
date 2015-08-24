@@ -13,12 +13,12 @@ public class Aspects {
 
     public enum Secondary {
         VOID,
-        ANGELIC,
+        SEDUCTIVE,
         FIRE,
         WATER,
         SLIME,
         DECAY,
-        BLOOD,
+        BEAST,
         NONE,
         UNKNOWN
     }
