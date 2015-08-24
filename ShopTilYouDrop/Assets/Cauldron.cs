@@ -12,10 +12,10 @@ public class Cauldron : MonoBehaviour {
     private List<IngredientType> added;
     private CauldronHUDController HUD;
 
-    private RandomizedAudioPlayer audio;
+    private RandomizedAudioPlayer audioPlayer;
 
     void Start() {
-        audio = gameObject.AddComponent<RandomizedAudioPlayer>();
+        audioPlayer = gameObject.AddComponent<RandomizedAudioPlayer>();
 
         enterTimes = new Dictionary<Ingredient, float>();
         added = new List<IngredientType>();
@@ -51,7 +51,7 @@ public class Cauldron : MonoBehaviour {
     }
 
     private void consumeIngredient(Ingredient ingredient) {
-        audio.playSound(consumeIngredientSound);
+        audioPlayer.playSound(consumeIngredientSound);
 
         added.Add(ingredient.type);
         HUD.notifyIngredientAdded(new List<IngredientType>(added));

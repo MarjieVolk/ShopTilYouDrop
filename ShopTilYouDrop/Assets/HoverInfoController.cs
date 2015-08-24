@@ -32,6 +32,8 @@ public class HoverInfoController : MonoBehaviour {
     }
 
     public void hideInfo() {
-        panel.SetActive(false);
+        if (panel != null) {
+            panel.SetActive(false);
+        }
     }
 }
