@@ -17,7 +17,7 @@ class Potions {
     private Potion defaultPotion;
 
     Potions() {
-        potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>(new MultiSetComparer());
+        potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>();
         createdPotions = new List<CreatedPotion>();
 
         defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new MultiSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
@@ -29,6 +29,8 @@ class Potions {
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
+
+        Debug.Log("Created potion with primary key: " + primaries);
 
         if (!potions.ContainsKey(primaries)) {
             potions.Add(primaries, new List<Potion>());
@@ -91,25 +93,5 @@ class Potions {
         }
 
         return bestMatch;
-    }
-
-    private class MultiSetComparer : IEqualityComparer<MultiSet<Aspects.Primary>> {
-
-        public bool Equals(MultiSet<Aspects.Primary> x, MultiSet<Aspects.Primary> y)
-        {
-            return x.Except(y).Count == 0 && y.Except(x).Count == 0;
-        }
-
-        public int GetHashCode(MultiSet<Aspects.Primary> obj)
-        {
-            int val = 0;
-            int multiplier = 1;
-            foreach (Aspects.Primary aspect in obj)
-            {
-                val += ((int)aspect) * multiplier;
-                multiplier *= 10;
-            }
-            return val;
-        }
     }
 }

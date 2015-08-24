@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 
 
-public class MultiSet<T> : ICollection<T>
+public class MultiSet<T> : ICollection<T>, IEquatable<MultiSet<T>>
 {
     private readonly Dictionary<T, int> _data;
 
@@ -116,6 +116,27 @@ public class MultiSet<T> : ICollection<T>
     System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
     {
         return new MultisetEnumerator<T>(this);
+    }
+
+    public override bool Equals(object obj)
+    {
+        return Equals(obj as MultiSet<T>);
+    }
+
+    public bool Equals(MultiSet<T> other)
+    {
+        if (other == null) return false;
+        return (Except(other).Count == 0) && (other.Except(this).Count == 0);
+    }
+
+    public override int GetHashCode()
+    {
+        int val = 0;
+        foreach (T element in this)
+        {
+            val *= (element.GetHashCode());
+        }
+        return val;
     }
 
     private class MultisetEnumerator<U> : IEnumerator<U>
