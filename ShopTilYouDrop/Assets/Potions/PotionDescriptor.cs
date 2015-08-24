@@ -53,6 +53,8 @@ public class PotionDescriptor : MonoBehaviour {
                 return EffectDecay;
             case Aspects.Secondary.BEAST:
                 return EffectBeastly;
+            case Aspects.Secondary.UNKNOWN:
+                return null;
             default:
                 throw new ArgumentException("Unrecognized Secondary aspect enum value: " + aspect);
         }

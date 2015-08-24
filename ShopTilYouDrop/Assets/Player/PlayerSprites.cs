@@ -32,7 +32,12 @@ class PlayerSprites {
     }
 
     public Sprite getSprite(Aspects.Secondary type, BodyPart bodyPart) {
-        return sprites[type][bodyPart];
+        if (sprites.ContainsKey(type)) {
+            return sprites[type][bodyPart];
+        } else {
+            Debug.Log("No sprites for player type " + type);
+            return sprites[Aspects.Secondary.NONE][bodyPart];
+        }
     }
 
 }

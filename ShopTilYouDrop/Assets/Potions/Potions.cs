@@ -39,6 +39,7 @@ class Potions {
     }
 
     public Potion createPotion(IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
+        Debug.Log("Creating potion with " + ingredient1 + ", " + ingredient2 + ", " + ingredient3);
         IngredientData data1 = Ingredients.instance().getIngredient(ingredient1);
         IngredientData data2 = Ingredients.instance().getIngredient(ingredient2);
         IngredientData data3 = Ingredients.instance().getIngredient(ingredient3);
@@ -75,7 +76,7 @@ class Potions {
 
         if (!potions.ContainsKey(primaries)) {
             foreach (List<Aspects.Primary> list in potions.Keys) {
-                Debug.Log("(" + list[0] + ", " + list[1] + ", " + list[2] + ") count=" + list.Count);
+                Debug.Log("No key for (" + list[0] + ", " + list[1] + ", " + list[2] + ") count=" + list.Count);
             }
             return defaultPotion;
         }
