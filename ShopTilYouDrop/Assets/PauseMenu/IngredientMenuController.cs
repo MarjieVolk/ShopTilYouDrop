@@ -19,7 +19,7 @@ public class IngredientMenuController : MonoBehaviour {
 
     private void initIngredientLineItem(IngredientType type) {
         GameObject display = Instantiate(lineItem);
-        display.transform.parent = transform;
+        display.transform.SetParent(transform);
 
         setSprite(display, "Ingredient", IngredientRenderer.instance().getSprite(type));
         
