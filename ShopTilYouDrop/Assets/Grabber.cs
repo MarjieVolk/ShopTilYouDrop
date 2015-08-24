@@ -8,6 +8,7 @@ public class Grabber : MonoBehaviour
 
     // The layer to which grabbed objects are moved.
     public LayerMask GrabbedObjectsMovedTo;
+    public int GrabbedObjectsDepth;
     public float linearDrag;
     public float angularDrag;
 
@@ -59,6 +60,7 @@ public class Grabber : MonoBehaviour
             Destroy(grabbedObject.GetComponent<ConstantMovement>());
             grabbedObject.isKinematic = false;
             grabbedObject.gameObject.layer = GrabbedObjectsMovedTo.getFirstSet();
+            grabbedObject.transform.position = new Vector3(grabbedObject.transform.position.x, grabbedObject.transform.position.y, GrabbedObjectsDepth);
         }
     }
 
