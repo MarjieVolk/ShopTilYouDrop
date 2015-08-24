@@ -62,4 +62,8 @@ public class PotionMenuController : MonoBehaviour {
             });
         }
     }
+
+    public void showHelp() {
+        GameObject.FindObjectOfType<HelpTextController>().showText("Potions Made Panel", "This panel shows all the potions you have made, what aspects were required to make them, and what ingredients you used.  You can use this information to discover what aspects ingredients have.  Click the X button to remove potions from the list that you no longer care about.");
+    }
 }
