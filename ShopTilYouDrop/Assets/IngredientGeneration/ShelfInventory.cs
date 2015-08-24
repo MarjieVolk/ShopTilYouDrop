@@ -10,7 +10,7 @@ public class ShelfInventory : MonoBehaviour {
 
     public int NumShelves;
 
-    public Vector2[] SpawnPositions;
+    public Vector3[] SpawnPositions;
 
     public float xSpeed;
 
@@ -54,7 +54,7 @@ public class ShelfInventory : MonoBehaviour {
                 {
                     float placedWidth = instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
                     shelfSpace[shelfIndex] = -placedWidth;
-                    instantiated.transform.position = SpawnPositions[shelfIndex] - Math.Sign(xSpeed) * new Vector2(placedWidth / 2, 0);
+                    instantiated.transform.position = SpawnPositions[shelfIndex] - Math.Sign(xSpeed) * new Vector3(placedWidth / 2, 0, 0);
                     instantiated.GetComponent<Rigidbody2D>().isKinematic = true;
                     instantiated.AddComponent<ConstantMovement>().Step = new Vector2(xSpeed, 0);
                     instantiated.layer = SpawnedObjectsLayer.getFirstSet();
