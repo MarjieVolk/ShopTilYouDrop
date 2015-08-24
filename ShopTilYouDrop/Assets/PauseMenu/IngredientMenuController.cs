@@ -33,8 +33,8 @@ public class IngredientMenuController : MonoBehaviour {
         initAspect(type, display, "Void", Aspects.Secondary.VOID);
         initAspect(type, display, "Slime", Aspects.Secondary.SLIME);
         initAspect(type, display, "Decay", Aspects.Secondary.DECAY);
-        initAspect(type, display, "Beast", Aspects.Secondary.BLOOD);
-        initAspect(type, display, "Seductive", Aspects.Secondary.ANGELIC);
+        initAspect(type, display, "Beast", Aspects.Secondary.BEAST);
+        initAspect(type, display, "Seductive", Aspects.Secondary.SEDUCTIVE);
     }
 
     private void initAspect(IngredientType ingredient, GameObject lineItemInstance, String childName, Aspects.Primary aspect) {

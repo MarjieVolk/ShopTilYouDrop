@@ -97,7 +97,7 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setHeadWolf() {
-        setBodyPart(BodyPart.HEAD, Aspects.Secondary.BLOOD);
+        setBodyPart(BodyPart.HEAD, Aspects.Secondary.BEAST);
     }
 
     public void setHeadZombie() {
@@ -117,7 +117,7 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setFaceWolf() {
-        setBodyPart(BodyPart.FACE, Aspects.Secondary.BLOOD);
+        setBodyPart(BodyPart.FACE, Aspects.Secondary.BEAST);
     }
 
     public void setFaceZombie() {
@@ -137,7 +137,7 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setTorsoWolf() {
-        setBodyPart(BodyPart.TORSO, Aspects.Secondary.BLOOD);
+        setBodyPart(BodyPart.TORSO, Aspects.Secondary.BEAST);
     }
 
     public void setTorsoZombie() {
@@ -160,8 +160,8 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setArmsWolf() {
-        setBodyPart(BodyPart.LEFT_ARM, Aspects.Secondary.BLOOD);
-        setBodyPart(BodyPart.RIGHT_ARM, Aspects.Secondary.BLOOD);
+        setBodyPart(BodyPart.LEFT_ARM, Aspects.Secondary.BEAST);
+        setBodyPart(BodyPart.RIGHT_ARM, Aspects.Secondary.BEAST);
     }
 
     public void setArmsZombie() {
@@ -185,8 +185,8 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setLegsWolf() {
-        setBodyPart(BodyPart.LEFT_LEG, Aspects.Secondary.BLOOD);
-        setBodyPart(BodyPart.RIGHT_LEG, Aspects.Secondary.BLOOD);
+        setBodyPart(BodyPart.LEFT_LEG, Aspects.Secondary.BEAST);
+        setBodyPart(BodyPart.RIGHT_LEG, Aspects.Secondary.BEAST);
     }
 
     public void setLegsZombie() {
