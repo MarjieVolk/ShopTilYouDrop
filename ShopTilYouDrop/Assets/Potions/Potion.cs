@@ -60,5 +60,6 @@ public class Potion {
         BodyPart[] bodyParts = _slot.ToBodyParts();
         playerSpriteController.setBodyParts(bodyParts, _type);
         playerSpriteController.setEffect(_slot, _effect);
+        PlayerSoundEffectPlayer.instance().playSound(_type);
     }
 }
