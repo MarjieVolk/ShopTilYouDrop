@@ -47,14 +47,14 @@ public class Cauldron : MonoBehaviour {
 
     private void consumeIngredient(Ingredient ingredient) {
         added.Add(ingredient.type);
-        HUD.notifyIngredientAdded(added);
+        HUD.notifyIngredientAdded(new List<IngredientType>(added));
         Destroy(ingredient.gameObject);
 
         if (added.Count >= 3) {
             createPotion(added[0], added[1], added[2]);
-            added.Remove(0);
-            added.Remove(0);
-            added.Remove(0);
+            added.RemoveAt(0);
+            added.RemoveAt(0);
+            added.RemoveAt(0);
             HUD.notifyCauldronCleared();
         }
     }

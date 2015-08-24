@@ -21,11 +21,6 @@ class Potions {
         createdPotions = new List<CreatedPotion>();
 
         defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new List<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
-
-        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, new List<Aspects.Secondary>(), PotionSlot.HEAD, Aspects.Secondary.SLIME, null);
-        List<Aspects.Secondary> secondaries = new List<Aspects.Secondary>();
-        secondaries.Add(Aspects.Secondary.FIRE);
-        add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, secondaries, PotionSlot.HEAD, Aspects.Secondary.BEAST, null);
     }
 
     public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {

@@ -32,7 +32,6 @@ public class CauldronHUDController : MonoBehaviour {
 	}
 
     public void notifyIngredientAdded(List<IngredientType> ingredients) {
-        Debug.Log("Adding ingredient");
         for (int i = 0; i < ingredients.Count && i < 3; i++) {
             Slot slot = slots[i];
             IngredientType type = ingredients[i];
