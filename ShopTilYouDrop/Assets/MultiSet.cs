@@ -13,9 +13,30 @@ public class MultiSet<T> : ICollection<T>
         _data = new Dictionary<T, int>();
     }
 
+    public MultiSet(ICollection<T> other)
+    {
+        _data = new Dictionary<T, int>();
+        foreach (T item in other)
+        {
+            Add(item);
+        }
+    }
+
     private MultiSet(Dictionary<T, int> data)
     {
         _data = data;
+    }
+
+    public override string ToString()
+    {
+        StringBuilder ret = new StringBuilder();
+        ret.Append("(");
+        foreach(T item in this){
+            if (ret.Length > 1) ret.Append(",");
+            ret.Append(item);
+        }
+        ret.Append(")");
+        return ret.ToString();
     }
 
     public MultiSet<T> Except(MultiSet<T> other)
