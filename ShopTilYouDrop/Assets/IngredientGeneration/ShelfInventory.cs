@@ -37,9 +37,10 @@ public class ShelfInventory : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        float actualSpeed = xSpeed * Time.deltaTime;
         for (int i = 0; i < NumShelves; i++)
         {
-            shelfSpace[i] += Math.Abs(xSpeed);
+            shelfSpace[i] += Math.Abs(actualSpeed);
         }
 
         Shuffle(generators);

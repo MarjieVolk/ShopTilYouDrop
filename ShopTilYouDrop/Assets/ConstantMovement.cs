@@ -10,6 +10,6 @@ public class ConstantMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        gameObject.transform.position += (Vector3)Step;
+        gameObject.transform.position += (Vector3)Step * Time.deltaTime;
 	}
 }
