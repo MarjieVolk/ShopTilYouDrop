@@ -45,7 +45,6 @@ public class Aspects {
     }
 
     public Sprite getNormalSprite(Primary type) {
-        Debug.Log("Getting normal sprite for " + type);
         return primaries[type].normal;
     }
 

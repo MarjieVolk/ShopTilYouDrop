@@ -9,10 +9,12 @@ public class Cauldron : MonoBehaviour {
 
     private Dictionary<Ingredient, float> enterTimes;
     private List<IngredientType> added;
+    private CauldronHUDController HUD;
 
     void Start() {
         enterTimes = new Dictionary<Ingredient, float>();
         added = new List<IngredientType>();
+        HUD = GameObject.FindObjectOfType<CauldronHUDController>();
     }
 
     void Update() {
@@ -45,6 +47,7 @@ public class Cauldron : MonoBehaviour {
 
     private void consumeIngredient(Ingredient ingredient) {
         added.Add(ingredient.type);
+        HUD.notifyIngredientAdded(added);
         Destroy(ingredient.gameObject);
 
         if (added.Count >= 3) {
@@ -52,6 +55,7 @@ public class Cauldron : MonoBehaviour {
             added.Remove(0);
             added.Remove(0);
             added.Remove(0);
+            HUD.notifyCauldronCleared();
         }
     }
 
