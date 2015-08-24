@@ -56,8 +56,9 @@ public class PotionMenuController : MonoBehaviour {
                 j++;
             }
 
+            CreatedPotion potion2 = potion;
             potionDisplay.transform.Find("Remove Button").GetComponent<Button>().onClick.AddListener(() => {
-                Potions.instance().removeLoggedPotion(potion);
+                Potions.instance().removeLoggedPotion(potion2);
                 showPotionsTab();
             });
         }

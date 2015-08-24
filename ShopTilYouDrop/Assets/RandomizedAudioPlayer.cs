@@ -14,8 +14,10 @@ public class RandomizedAudioPlayer : MonoBehaviour {
 	}
 
     public void playSound(AudioClip[] clips) {
-	    int randomIndex = Random.Range(0, clips.Length);
-        playSound(clips[randomIndex]);
+        if (clips.Length > 0) {
+            int randomIndex = Random.Range(0, clips.Length - 1);
+            playSound(clips[randomIndex]);
+        }
     }
 
     public void playSound(AudioClip clip) {
