@@ -48,6 +48,14 @@ public class Potion {
         return new MultiSet<Aspects.Secondary>(secondaries);
     }
 
+    public Aspects.Secondary getType() {
+        return _type;
+    }
+
+    public BodyPart[] getAffectedBodyParts() {
+        return _slot.ToBodyParts();
+    }
+
     public void TriggerEffect() {
         BodyPart[] bodyParts = _slot.ToBodyParts();
         playerSpriteController.setBodyParts(bodyParts, _type);

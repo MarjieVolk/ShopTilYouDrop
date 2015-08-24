@@ -6,12 +6,17 @@ using System.Collections.Generic;
 public class Cauldron : MonoBehaviour {
 
     public float consumeDelaySeconds;
+    public AudioClip consumeIngredientSound;
 
     private Dictionary<Ingredient, float> enterTimes;
     private List<IngredientType> added;
     private CauldronHUDController HUD;
 
+    private RandomizedAudioPlayer audio;
+
     void Start() {
+        audio = gameObject.AddComponent<RandomizedAudioPlayer>();
+
         enterTimes = new Dictionary<Ingredient, float>();
         added = new List<IngredientType>();
         HUD = GameObject.FindObjectOfType<CauldronHUDController>();
@@ -46,6 +51,8 @@ public class Cauldron : MonoBehaviour {
     }
 
     private void consumeIngredient(Ingredient ingredient) {
+        audio.playSound(consumeIngredientSound);
+
         added.Add(ingredient.type);
         HUD.notifyIngredientAdded(new List<IngredientType>(added));
         Destroy(ingredient.gameObject);
