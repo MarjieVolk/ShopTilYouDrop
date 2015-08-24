@@ -77,4 +77,8 @@ public class CauldronHUDController : MonoBehaviour {
             this.secondary = secondary;
         }
     }
+
+    public void showHelp() {
+        GameObject.FindObjectOfType<HelpTextController>().showText("Cauldron Contents Panel", "This panel shows which ingredients are currently dissolved in your cauldron.  When three ingredients are dissolved, they will make a potion!  Potions can affect your appearance in many frightening ways.\n\nThe icons below the ingredients show your guesses for which aspects those ingredients have.  Press SPACE to find out more about aspects!");
+    }
 }
