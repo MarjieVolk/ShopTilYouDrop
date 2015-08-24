@@ -66,6 +66,10 @@ public class Grabber : MonoBehaviour
 
     private static Rigidbody2D FindGrabbableUnder(Vector2 cursorWorldPostion)
     {
+        if (Time.timeScale == 0)
+        {
+            return null;
+        }
         Rigidbody2D grabbedObject = null;
         RaycastHit2D[] raycastHits = Physics2D.RaycastAll(cursorWorldPostion, Vector2.zero);
         foreach (RaycastHit2D raycastHit in raycastHits)
