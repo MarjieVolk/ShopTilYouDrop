@@ -15,7 +15,10 @@ class Ingredients {
 
     Ingredients() {
         ingredients = new Dictionary<IngredientType, IngredientData>();
-        add(IngredientType.CHEDDAR, Aspects.Primary.DAIRY, Aspects.Secondary.FIRE);
+
+        foreach (IngredientType type in Enum.GetValues(typeof(IngredientType))) {
+            add(type, type.GetPrimaryAspect(), type.GetSecondaryAspect());
+        }
     }
 
     public IngredientData getIngredient(IngredientType type) {
