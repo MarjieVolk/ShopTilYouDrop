@@ -1,17 +1,18 @@
 fileFormatVersion: 2
-guid: e2d1cbfebab371e43a16d83a92655655
-timeCreated: 1440350846
+guid: 4ca7a6e343626a54089a9b53b0be8095
+timeCreated: 1440384958
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: head
-    21300002: face
-    21300004: torso
+    21300000: arm_r
+    21300002: wings
+    21300004: leg_l
     21300006: arm_l
-    21300008: tail
-    21300010: arm_r
-    21300012: leg_l
-    21300014: leg_r
+    21300008: leg_r
+    21300010: torso
+    21300012: face
+    21300014: head
+    21300016: birdspritesheet_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,67 +52,27 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 140
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: head
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: face
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: torso
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_l
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: tail
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
     - name: arm_r
       rect:
         serializedVersion: 2
+        x: 0
+        y: 420
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: wings
+      rect:
+        serializedVersion: 2
         x: 140
-        y: 0
+        y: 420
         width: 140
         height: 140
       alignment: 0
@@ -121,7 +82,17 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 280
-        y: 0
+        y: 420
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arm_l
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 420
         width: 140
         height: 140
       alignment: 0
@@ -130,12 +101,52 @@ TextureImporter:
     - name: leg_r
       rect:
         serializedVersion: 2
-        x: 420
-        y: 0
+        x: 0
+        y: 280
         width: 140
         height: 140
       alignment: 0
       pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: torso
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: face
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: head
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: birdspritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

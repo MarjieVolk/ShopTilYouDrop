@@ -1,23 +1,21 @@
 fileFormatVersion: 2
-guid: 440fb28f45467374d8f80e234674669e
-timeCreated: 1440311408
+guid: e2d1cbfebab371e43a16d83a92655655
+timeCreated: 1440350846
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: head_slime
+    21300000: head
     21300002: face
-    21300004: arm_l
-    21300006: head
-    21300008: leg_l
-    21300010: torso
-    21300012: arm_r
-    21300014: slimespritesheet_6
-    21300016: slimespritesheet_7
-    21300018: slimespritesheet_8
+    21300004: torso
+    21300006: arm_l
+    21300008: tail
+    21300010: arm_r
+    21300012: leg_l
+    21300014: leg_r
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -53,7 +51,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 140
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -63,7 +61,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 420
+        y: 140
         width: 140
         height: 140
       alignment: 0
@@ -73,27 +71,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 140
-        y: 420
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_l
-      rect:
-        serializedVersion: 2
-        x: 280
-        y: 420
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_l
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 420
+        y: 140
         width: 140
         height: 140
       alignment: 0
@@ -102,8 +80,28 @@ TextureImporter:
     - name: torso
       rect:
         serializedVersion: 2
+        x: 280
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arm_l
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 140
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: tail
+      rect:
+        serializedVersion: 2
         x: 0
-        y: 280
+        y: 0
         width: 140
         height: 140
       alignment: 0
@@ -113,37 +111,27 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 140
-        y: 280
+        y: 0
         width: 140
         height: 140
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slimespritesheet_6
+    - name: leg_l
       rect:
         serializedVersion: 2
         x: 280
-        y: 280
+        y: 0
         width: 140
         height: 140
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slimespritesheet_7
+    - name: leg_r
       rect:
         serializedVersion: 2
         x: 420
-        y: 280
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: slimespritesheet_8
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 140
+        y: 0
         width: 140
         height: 140
       alignment: 0

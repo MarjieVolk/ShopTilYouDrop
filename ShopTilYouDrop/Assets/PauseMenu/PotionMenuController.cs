@@ -8,7 +8,6 @@ public class PotionMenuController : MonoBehaviour {
     public GameObject lineItemWithSecondariesPrefab;
 
     public Sprite potionSprite;
-    public Sprite aspectSprite;
 
     public void showPotionsTab() {
         foreach (Transform child in gameObject.transform) {
@@ -36,7 +35,7 @@ public class PotionMenuController : MonoBehaviour {
                 }
             }
 
-            potionDisplay.transform.parent = transform;
+            potionDisplay.transform.SetParent(transform);
 
             List<IngredientType> ingredients = potion.getIngredients();
             for (int i = 0; i < 3; i++ ) {

@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 091518760caac5c4b843811c773b0370
-timeCreated: 1440350887
+guid: 95351a8faae825342b307decf770d5c2
+timeCreated: 1440350938
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: head
-    21300002: face
+    21300000: legs
+    21300002: arm_r
     21300004: arm_l
-    21300006: leg_l
-    21300008: leg_r
-    21300010: torso
-    21300012: arm_r
-    21300014: zombiespritesheet_7
+    21300006: torso
+    21300008: head
+    21300010: face
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,13 +49,13 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 140
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: head
+    - name: legs
       rect:
         serializedVersion: 2
         x: 0
@@ -67,7 +65,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: face
+    - name: arm_r
       rect:
         serializedVersion: 2
         x: 140
@@ -87,7 +85,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_l
+    - name: torso
       rect:
         serializedVersion: 2
         x: 420
@@ -97,7 +95,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_r
+    - name: head
       rect:
         serializedVersion: 2
         x: 0
@@ -107,7 +105,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: torso
+    - name: face
       rect:
         serializedVersion: 2
         x: 140
@@ -116,26 +114,6 @@ TextureImporter:
         height: 140
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_r
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 0
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: zombiespritesheet_7
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 0
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
