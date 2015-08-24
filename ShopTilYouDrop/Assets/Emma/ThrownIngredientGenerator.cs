@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ThrownIngredientGenerator : MonoBehaviour, IIngredientGenerator {
-	
+
+	// For thrown objects, this value should be pretty high.
+	// The more ingredients thrown, the higher this value should be for each one.
 	public float MeanTimeBetweenAppearances;
 	public IngredientType ingredient;
 	
@@ -12,7 +14,6 @@ public class ThrownIngredientGenerator : MonoBehaviour, IIngredientGenerator {
 	private PasserbyInventory shelf;
 	private float nextSpawnTime;
 	
-	// Use this for initialization
 	void Start () {
 		random = new System.Random();
 		shelf = FindObjectOfType<PasserbyInventory>();
@@ -34,12 +35,6 @@ public class ThrownIngredientGenerator : MonoBehaviour, IIngredientGenerator {
 	
 	private float SampleDelay()
 	{
-		// p = 1 - e^-lx
-		// 1 - p = e^-lx
-		// log_e(1 - p) = -lx
-		// log_e(1-p) / -l = x
-		// log_e(1-p) * -B
-		
 		return -1 * (float) System.Math.Log(1 - random.NextDouble(), System.Math.E) * MeanTimeBetweenAppearances;
 	}
 }

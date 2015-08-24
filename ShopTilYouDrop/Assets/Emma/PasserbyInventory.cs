@@ -5,8 +5,7 @@ using System;
 
 public class PasserbyInventory : MonoBehaviour {
 	
-	// Manages access to the upcoming shelf space
-	// TODO There's a final backup generator for when everyone refuses to place ingredients so the shelves aren't empty
+	// Makes passerby throw things
 
 	public Vector3 SpawnPosition;
 	public Vector2 Speed;
@@ -35,6 +34,8 @@ public class PasserbyInventory : MonoBehaviour {
 			IngredientType? type = generator.TryPlaceIngredient(null, 0);
 			if (type != null)
 			{
+				// TODO: Put a "scared bystander" sound effect here!!!
+
 				GameObject instantiated = Instantiate(IngredientUniversalPrefab);
 				instantiated.GetComponent<Ingredient>().type = (IngredientType)type;
 				instantiated.GetComponent<Ingredient>().InitializeGameObject();
