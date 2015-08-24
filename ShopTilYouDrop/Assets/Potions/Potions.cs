@@ -77,7 +77,7 @@ class Potions {
         Debug.Log("Secondaries:" + secondaries);
 
         if (!potions.ContainsKey(primaries)) {
-            Debug.Log("No key for " + primaries.ToString() + " count=" + primaries.Count);
+            Debug.Log("No key for " + primaries.ToString());
             return defaultPotion;
         }
 
