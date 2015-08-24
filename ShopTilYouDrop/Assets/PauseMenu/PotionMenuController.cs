@@ -7,7 +7,7 @@ public class PotionMenuController : MonoBehaviour {
     public GameObject lineItemPrefab;
     public GameObject lineItemWithSecondariesPrefab;
 
-    public Sprite potionSprite;
+    public Sprite dudPotionSprite;
 
     public void showPotionsTab() {
         foreach (Transform child in gameObject.transform) {
@@ -47,8 +47,19 @@ public class PotionMenuController : MonoBehaviour {
                 potionDisplay.transform.Find("Ingredient Image " + (i + 1)).gameObject.GetComponent<Image>().sprite = IngredientRenderer.instance().getSprite(ingredients[i]);
             }
 
-            // TODO: get correct image for potion
-            potionDisplay.transform.Find("Potion Details/Potion Image").gameObject.GetComponent<Image>().sprite = potionSprite;
+            Image bodyPartImage1 = potionDisplay.transform.Find("Potion Details/Potion Image").gameObject.GetComponent<Image>();
+            Image bodyPartImage2 = potionDisplay.transform.Find("Potion Details/Potion Image 2").gameObject.GetComponent<Image>();
+
+            bodyPartImage1.sprite = dudPotionSprite;
+            bodyPartImage2.sprite = null;
+
+            BodyPart[] parts = potion.getPotion().getAffectedBodyParts();
+            if (parts.Length > 0) {
+                bodyPartImage1.sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[0]);
+            }
+            if (parts.Length > 1) {
+                bodyPartImage2.sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[1]);
+            }
 
             int j = 1;
             foreach (Aspects.Primary primary in potion.getPotion().getPrimaries()) {

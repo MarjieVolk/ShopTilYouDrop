@@ -24,4 +24,17 @@ public class Ingredient : MonoBehaviour {
         }
         gameObject.AddComponent<PolygonCollider2D>();
     }
+
+    void OnMouseOver() {
+        IngredientData data = Ingredients.instance().getIngredient(type);
+        HoverInfoController.instance().showInfo(transform.position, data.getPrimaryGuess(), data.getSecondaryGuess());
+    }
+
+    void OnMouseExit() {
+        HoverInfoController.instance().hideInfo();
+    }
+
+    void OnDestroy() {
+        HoverInfoController.instance().hideInfo();
+    }
 }

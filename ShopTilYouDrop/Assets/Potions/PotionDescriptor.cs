@@ -29,17 +29,28 @@ public class PotionDescriptor : MonoBehaviour {
                     Slot,
                     aspect,
                     null);
-                continue;
+            } else if (aspect == Aspects.Secondary.UNKNOWN || aspect == Aspects.Secondary.BASIC) {
+                // No op.  Weird special cases
+            } else {
+                Effect effect = getEffectForAspect(aspect);
+                Potions.instance().add(
+                    PrimaryAspects[0],
+                    PrimaryAspects[1],
+                    PrimaryAspects[2],
+                    new MultiSet<Aspects.Secondary>() { aspect, aspect, aspect },
+                    Slot,
+                    aspect,
+                    effect);
+
+                Potions.instance().add(
+                    PrimaryAspects[0],
+                    PrimaryAspects[1],
+                    PrimaryAspects[2],
+                    new MultiSet<Aspects.Secondary>() { aspect, aspect },
+                    Slot,
+                    Aspects.Secondary.BASIC,
+                    null);
             }
-            Effect effect = getEffectForAspect(aspect);
-            Potions.instance().add(
-                PrimaryAspects[0],
-                PrimaryAspects[1],
-                PrimaryAspects[2],
-                new MultiSet<Aspects.Secondary>() { aspect, aspect, aspect },
-                Slot,
-                aspect,
-                effect);
         }
 
         Destroy(this);

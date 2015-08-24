@@ -20,7 +20,8 @@ public class Aspects {
         DECAY,
         BEAST,
         NONE,
-        UNKNOWN
+        UNKNOWN,
+        BASIC
     }
 
     private static Aspects INSTANCE = new Aspects();
