@@ -6,5 +6,5 @@ using UnityEngine;
 
 public interface IIngredientGenerator
 {
-    GameObject TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex);
+    IngredientType? TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex);
 }

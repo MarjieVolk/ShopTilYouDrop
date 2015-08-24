@@ -9,12 +9,10 @@ public class ShelfInventory : MonoBehaviour {
     // TODO There's a final backup generator for when everyone refuses to place ingredients so the shelves aren't empty
 
     public int NumShelves;
-
     public Vector3[] SpawnPositions;
-
     public float xSpeed;
-
     public LayerMask SpawnedObjectsLayer;
+    public GameObject IngredientUniversalPrefab;
 
     // The amount of space available on each shelf
     private IList<float> shelfSpace;
@@ -49,9 +47,13 @@ public class ShelfInventory : MonoBehaviour {
         {
             for (int shelfIndex = 0; shelfIndex < NumShelves; shelfIndex++)
             {
-                GameObject instantiated = generator.TryPlaceIngredient(shelfSpace, shelfIndex);
-                if (instantiated != null)
+                IngredientType? type = generator.TryPlaceIngredient(shelfSpace, shelfIndex);
+                if (type != null)
                 {
+                    GameObject instantiated = Instantiate(IngredientUniversalPrefab);
+                    instantiated.GetComponent<Ingredient>().type = (IngredientType)type;
+                    instantiated.GetComponent<Ingredient>().InitializeGameObject();
+
                     float placedWidth = instantiated.GetComponent<SpriteRenderer>().bounds.size.x;
                     shelfSpace[shelfIndex] = -placedWidth;
                     instantiated.transform.position = SpawnPositions[shelfIndex] - Math.Sign(xSpeed) * new Vector3(placedWidth / 2, 0, 0);

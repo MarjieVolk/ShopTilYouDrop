@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class SparseIngredientGenerator : MonoBehaviour, IIngredientGenerator {
 
     public float MeanTimeBetweenAppearances;
-    public GameObject ingredient;
+    public IngredientType ingredient;
 
     private static System.Random random = new System.Random();
 
@@ -21,12 +21,12 @@ public class SparseIngredientGenerator : MonoBehaviour, IIngredientGenerator {
         _nextSpawnTime = new float[shelf.NumShelves];
 	}
 
-    public GameObject TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex)
+    public IngredientType? TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex)
     {
         if (shelfSpace[shelfIndex] > 0 && Time.time > _nextSpawnTime[shelfIndex])
         {
             _nextSpawnTime[shelfIndex] += SampleDelay();
-            return Instantiate(ingredient);
+            return ingredient;
         }
 
         return null;
