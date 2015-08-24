@@ -5,7 +5,9 @@ using UnityEngine.Audio;
 public class AudioSwitcher : MonoBehaviour {
 
     public AudioMixerSnapshot levelMusic;
+    public AudioSource LevelMusicSource;
     public AudioMixerSnapshot pauseMusic;
+    public AudioSource PauseMusicSource;
     public float TransitionSeconds;
     public float TimeWarpingFactor;
 
@@ -24,8 +26,10 @@ public class AudioSwitcher : MonoBehaviour {
             {
                 Time.timeScale = TimeWarpingFactor;
                 current = pauseMusic;
+                PauseMusicSource.UnPause();
                 current.TransitionTo(TransitionSeconds * TimeWarpingFactor);
                 StartCoroutine(RepauseLater(TransitionSeconds * TimeWarpingFactor));
+                StartCoroutine(PauseMusic(LevelMusicSource, current, TransitionSeconds * TimeWarpingFactor));
             }
         }
         else
@@ -33,7 +37,9 @@ public class AudioSwitcher : MonoBehaviour {
             if (current == pauseMusic)
             {
                 current = levelMusic;
+                LevelMusicSource.UnPause();
                 current.TransitionTo(TransitionSeconds);
+                StartCoroutine(PauseMusic(PauseMusicSource, current, TransitionSeconds * TimeWarpingFactor));
             }
         }
 	}
@@ -43,5 +49,15 @@ public class AudioSwitcher : MonoBehaviour {
         yield return new WaitForSeconds(time);
 
         if (Time.timeScale <= TimeWarpingFactor) Time.timeScale = 0;
+    }
+
+    IEnumerator PauseMusic(AudioSource toPause, AudioMixerSnapshot current, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if (this.current == current)
+        {
+            toPause.Pause();
+        }
     }
 }
