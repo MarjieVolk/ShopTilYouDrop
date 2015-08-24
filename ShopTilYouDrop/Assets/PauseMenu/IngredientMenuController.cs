@@ -35,6 +35,8 @@ public class IngredientMenuController : MonoBehaviour {
         initAspect(type, display, "Decay", Aspects.Secondary.DECAY);
         initAspect(type, display, "Beast", Aspects.Secondary.BEAST);
         initAspect(type, display, "Seductive", Aspects.Secondary.SEDUCTIVE);
+
+        updateWarningIcon(Ingredients.instance().getIngredient(type), display);
     }
 
     private void initAspect(IngredientType ingredient, GameObject lineItemInstance, String childName, Aspects.Primary aspect) {
@@ -63,6 +65,7 @@ public class IngredientMenuController : MonoBehaviour {
             }
 
             data.setGuessState(aspect, next);
+            updateWarningIcon(data, lineItemInstance);
         });
     }
 
@@ -92,10 +95,16 @@ public class IngredientMenuController : MonoBehaviour {
             }
 
             data.setGuessState(aspect, next);
+            updateWarningIcon(data, lineItemInstance);
         });
     }
 
     private void setSprite(GameObject lineItemInstance, String childName, Sprite sprite) {
         lineItemInstance.transform.Find(childName).GetComponent<Image>().sprite = sprite;
+    }
+
+    private void updateWarningIcon(IngredientData data, GameObject lineItemInstance) {
+        GameObject warningIcon = lineItemInstance.transform.Find("Warning").gameObject;
+        warningIcon.SetActive(data.hasMultiplePrimaryGuesses() || data.hasMultipleSecondaryGuesses());
     }
 }

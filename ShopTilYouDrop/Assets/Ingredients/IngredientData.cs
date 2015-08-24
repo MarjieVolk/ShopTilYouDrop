@@ -60,6 +60,22 @@ class IngredientData {
         return guess;
     }
 
+    public bool hasMultiplePrimaryGuesses() {
+        Aspects.Primary guess = Aspects.Primary.UNKNOWN;
+        foreach (Aspects.Primary aspect in primaryGuesses.Keys) {
+            if (primaryGuesses[aspect] == GuessState.HAS) {
+                if (guess == Aspects.Primary.UNKNOWN) {
+                    guess = aspect;
+                } else {
+                    // Multiple aspects guessed
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
     public Aspects.Secondary getSecondaryGuess() {
         Aspects.Secondary guess = Aspects.Secondary.UNKNOWN;
         foreach (Aspects.Secondary aspect in secondaryGuesses.Keys) {
@@ -74,6 +90,22 @@ class IngredientData {
         }
 
         return guess;
+    }
+
+    public bool hasMultipleSecondaryGuesses() {
+        Aspects.Secondary guess = Aspects.Secondary.UNKNOWN;
+        foreach (Aspects.Secondary aspect in secondaryGuesses.Keys) {
+            if (secondaryGuesses[aspect] == GuessState.HAS) {
+                if (guess == Aspects.Secondary.UNKNOWN) {
+                    guess = aspect;
+                } else {
+                    // Multiple aspects guessed
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public enum GuessState {
