@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class DenseIngredientsGenerator : MonoBehaviour, IIngredientGenerator {
 
-    public GameObject[] ingredients;
+    public IngredientType[] ingredients;
     public float SwitchProbability;
 
     private ShelfInventory shelf;
-    private GameObject currentIngredient;
+    private IngredientType currentIngredient;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +22,7 @@ public class DenseIngredientsGenerator : MonoBehaviour, IIngredientGenerator {
 	
 	}
 
-    public GameObject TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex)
+    public IngredientType? TryPlaceIngredient(IList<float> shelfSpace, int shelfIndex)
     {
         if (shelfIndex == 0 && Random.value < SwitchProbability)
         {
@@ -31,12 +31,12 @@ public class DenseIngredientsGenerator : MonoBehaviour, IIngredientGenerator {
 
         if (shelfSpace[shelfIndex] > 0)
         {
-            return Instantiate(currentIngredient);
+            return currentIngredient;
         }
         return null;
     }
 
-    private GameObject selectIngredient()
+    private IngredientType selectIngredient()
     {
         return ingredients[Random.Range(0, ingredients.Length)];
     }

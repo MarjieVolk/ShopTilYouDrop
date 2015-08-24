@@ -28,7 +28,7 @@ class Potions {
         add(Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, Aspects.Primary.DAIRY, secondaries, PotionSlot.HEAD, Aspects.Secondary.BEAST, null);
     }
 
-    private void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+    public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
         Potion potion = new Potion(primary1, primary2, primary3, secondaries, slot, type, effect);
         List<Aspects.Primary> primaries = new List<Aspects.Primary>();
         primaries.Add(primary1);
