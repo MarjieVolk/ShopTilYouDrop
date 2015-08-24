@@ -112,6 +112,6 @@ public class IngredientMenuController : MonoBehaviour {
     }
 
     public void showHelp() {
-        GameObject.FindObjectOfType<HelpTextController>().showText("Ingredients Panel", "This panel is used to keep track of what aspects you think each ingredient has.  Each ingredient has two aspects - a Primary and a Secondary.  A warning icon next to an ingredient means that your guess for that ingredient is invalid.  Usually this is because you have guessed more than one Primary aspect or more than one Secondary aspect.");
+        GameObject.FindObjectOfType<HelpTextController>().showText("Ingredients Panel", "This panel keeps track of what aspects you think each ingredient has.  Each ingredient has two aspects - a Food Group aspect and an Elemental aspect.\n\nA warning icon next to an ingredient means that you have guessed more than one Food Group aspect or more than one Elemental aspect.  Each ingredient has only one of each!");
     }
 }
