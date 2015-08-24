@@ -36,6 +36,9 @@ public class IngredientMenuController : MonoBehaviour {
         initAspect(type, display, "Beast", Aspects.Secondary.BEAST);
         initAspect(type, display, "Seductive", Aspects.Secondary.SEDUCTIVE);
 
+        display.transform.Find("Warning").GetComponent<Button>().onClick.AddListener(() => {
+            showHelp();
+        });
         updateWarningIcon(Ingredients.instance().getIngredient(type), display);
     }
 
@@ -106,5 +109,9 @@ public class IngredientMenuController : MonoBehaviour {
     private void updateWarningIcon(IngredientData data, GameObject lineItemInstance) {
         GameObject warningIcon = lineItemInstance.transform.Find("Warning").gameObject;
         warningIcon.SetActive(data.hasMultiplePrimaryGuesses() || data.hasMultipleSecondaryGuesses());
+    }
+
+    public void showHelp() {
+        GameObject.FindObjectOfType<HelpTextController>().showText("Ingredients Panel", "This panel is used to keep track of what aspects you think each ingredient has.  Each ingredient has two aspects - a Primary and a Secondary.  A warning icon next to an ingredient means that your guess for that ingredient is invalid.  Usually this is because you have guessed more than one Primary aspect or more than one Secondary aspect.");
     }
 }

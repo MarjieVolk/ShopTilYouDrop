@@ -12,24 +12,23 @@ class Potions {
         return INSTANCE;
     }
 
-    private Dictionary<List<Aspects.Primary>, List<Potion>> potions;
+    private Dictionary<MultiSet<Aspects.Primary>, List<Potion>> potions;
     private List<CreatedPotion> createdPotions;
     private Potion defaultPotion;
 
     Potions() {
-        potions = new Dictionary<List<Aspects.Primary>, List<Potion>>(new ListComparer());
+        potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>(new MultiSetComparer());
         createdPotions = new List<CreatedPotion>();
 
-        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new List<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new MultiSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
     }
 
-    public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+    public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, MultiSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
         Potion potion = new Potion(primary1, primary2, primary3, secondaries, slot, type, effect);
-        List<Aspects.Primary> primaries = new List<Aspects.Primary>();
+        MultiSet<Aspects.Primary> primaries = new MultiSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
-        primaries.Sort();
 
         if (!potions.ContainsKey(primaries)) {
             potions.Add(primaries, new List<Potion>());
@@ -44,11 +43,10 @@ class Potions {
         IngredientData data2 = Ingredients.instance().getIngredient(ingredient2);
         IngredientData data3 = Ingredients.instance().getIngredient(ingredient3);
 
-        List<Aspects.Secondary> secondaries = new List<Aspects.Secondary>();
+        MultiSet<Aspects.Secondary> secondaries = new MultiSet<Aspects.Secondary>();
         secondaries.Add(data1.secondary);
         secondaries.Add(data1.secondary);
         secondaries.Add(data1.secondary);
-        secondaries.Sort();
 
         Potion createdPotion = getBestMatch(data1.primary, data2.primary, data3.primary, secondaries);
         logPotionCreation(createdPotion, ingredient1, ingredient2, ingredient3);
@@ -67,17 +65,14 @@ class Potions {
         createdPotions.Add(new CreatedPotion(potionMade, ingredient1, ingredient2, ingredient3));
     }
 
-    private Potion getBestMatch(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries) {
-        List<Aspects.Primary> primaries = new List<Aspects.Primary>();
+    private Potion getBestMatch(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, MultiSet<Aspects.Secondary> secondaries) {
+        MultiSet<Aspects.Primary> primaries = new MultiSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
-        primaries.Sort();
 
         if (!potions.ContainsKey(primaries)) {
-            foreach (List<Aspects.Primary> list in potions.Keys) {
-                Debug.Log("No key for (" + list[0] + ", " + list[1] + ", " + list[2] + ") count=" + list.Count);
-            }
+            Debug.Log("No key for " + primaries.ToString() + " count=" + primaries.Count);
             return defaultPotion;
         }
 
@@ -85,13 +80,7 @@ class Potions {
 
         Potion bestMatch = null;
         foreach (Potion primaryMatch in primaryMatches) {
-            bool match = true;
-            foreach (Aspects.Secondary secondaryRequirement in primaryMatch.getSecondaries()) {
-                if (!secondaries.Contains(secondaryRequirement)) {
-                    match = false;
-                    break;
-                }
-            }
+            bool match = (primaryMatch.getSecondaries().Except(secondaries).Count == 0);
 
             if (match && (bestMatch == null || bestMatch.getSecondaries().Count() < primaryMatch.getSecondaries().Count())) {
                 bestMatch = primaryMatch;
@@ -101,17 +90,20 @@ class Potions {
         return bestMatch;
     }
 
-    private class ListComparer : IEqualityComparer<List<Aspects.Primary>> {
+    private class MultiSetComparer : IEqualityComparer<MultiSet<Aspects.Primary>> {
 
-        public bool Equals(List<Aspects.Primary> x, List<Aspects.Primary> y) {
-            return x.SequenceEqual(y);
+        public bool Equals(MultiSet<Aspects.Primary> x, MultiSet<Aspects.Primary> y)
+        {
+            return x.Except(y).Count == 0 && y.Except(x).Count == 0;
         }
 
-        public int GetHashCode(List<Aspects.Primary> obj) {
+        public int GetHashCode(MultiSet<Aspects.Primary> obj)
+        {
             int val = 0;
             int multiplier = 1;
-            foreach (Aspects.Primary aspect in obj) {
-                val += ((int) aspect) * multiplier;
+            foreach (Aspects.Primary aspect in obj)
+            {
+                val += ((int)aspect) * multiplier;
                 multiplier *= 10;
             }
             return val;

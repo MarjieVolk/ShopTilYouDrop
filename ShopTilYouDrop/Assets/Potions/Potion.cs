@@ -19,34 +19,33 @@ public class Potion {
         }
     }
 
-    private List<Aspects.Primary> primaries;
-    private List<Aspects.Secondary> secondaries;
+    private MultiSet<Aspects.Primary> primaries;
+    private MultiSet<Aspects.Secondary> secondaries;
     private PotionSlot _slot;
     private Aspects.Secondary _type;
     private Effect _effect;
 
     public Potion(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3,
-                  List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
-        primaries = new List<Aspects.Primary>();
+                  MultiSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+        primaries = new MultiSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
         primaries.Add(primary3);
-        primaries.Sort();
 
-        this.secondaries = secondaries;
-        secondaries.Sort();
+        this.secondaries = new MultiSet<Aspects.Secondary>(secondaries);
 
         _slot = slot;
         _type = type;
         _effect = effect;
     }
 
-    public List<Aspects.Primary> getPrimaries() {
-        return new List<Aspects.Primary>(primaries);
+    public MultiSet<Aspects.Primary> getPrimaries() {
+        return new MultiSet<Aspects.Primary>(primaries);
     }
 
-    public List<Aspects.Secondary> getSecondaries() {
-        return new List<Aspects.Secondary>(secondaries);
+    public MultiSet<Aspects.Secondary> getSecondaries()
+    {
+        return new MultiSet<Aspects.Secondary>(secondaries);
     }
 
     public void TriggerEffect() {

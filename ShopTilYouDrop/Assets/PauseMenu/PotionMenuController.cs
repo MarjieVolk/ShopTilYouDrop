@@ -16,7 +16,7 @@ public class PotionMenuController : MonoBehaviour {
 
         foreach (CreatedPotion potion in Potions.instance().getLoggedPotions()) {
             GameObject potionDisplay;
-            List<Aspects.Secondary> secondaries = potion.getPotion().getSecondaries();
+            MultiSet<Aspects.Secondary> secondaries = potion.getPotion().getSecondaries();
             if (secondaries.Count == 0) {
                 // Potion has no secondaries
                 potionDisplay = Instantiate(lineItemPrefab);
@@ -25,13 +25,18 @@ public class PotionMenuController : MonoBehaviour {
                 potionDisplay = Instantiate(lineItemWithSecondariesPrefab);
 
                 int i = 0;
-                for (i = 0; i < 3; i++) {
+                foreach (Aspects.Secondary aspect in secondaries)
+                {
                     GameObject icon = potionDisplay.transform.Find("Potion Details/Aspect Icons Secondary/Aspect " + (i + 1)).gameObject;
-                    if (i < secondaries.Count) {
-                        icon.GetComponent<Image>().sprite = Aspects.instance().getNormalSprite(secondaries[i]);
-                    } else {
+                    if (i < secondaries.Count)
+                    {
+                        icon.GetComponent<Image>().sprite = Aspects.instance().getNormalSprite(aspect);
+                    }
+                    else
+                    {
                         Destroy(icon);
                     }
+                    i++;
                 }
             }
 
@@ -56,5 +61,9 @@ public class PotionMenuController : MonoBehaviour {
                 showPotionsTab();
             });
         }
+    }
+
+    public void showHelp() {
+        GameObject.FindObjectOfType<HelpTextController>().showText("Potions Made Panel", "This panel shows all the potions you have made, what aspects were required to make them, and what ingredients you used.  You can use this information to discover what aspects ingredients have.  Click the X button to remove potions from the list that you no longer care about.");
     }
 }
