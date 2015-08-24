@@ -8,14 +8,18 @@ public class IngredientMenuController : MonoBehaviour {
     public GameObject lineItem;
 
 	void Start () {
+
+	}
+
+    public void showIngredientTab() {
         foreach (Transform child in gameObject.transform) {
             Destroy(child.gameObject);
         }
 
-        foreach (IngredientType type in Enum.GetValues(typeof(IngredientType))) {
+        foreach (IngredientType type in Ingredients.instance().getSeenIngredients()) {
             initIngredientLineItem(type);
         }
-	}
+    }
 
     private void initIngredientLineItem(IngredientType type) {
         GameObject display = Instantiate(lineItem);
@@ -112,6 +116,6 @@ public class IngredientMenuController : MonoBehaviour {
     }
 
     public void showHelp() {
-        GameObject.FindObjectOfType<HelpTextController>().showText("Ingredients Panel", "This panel keeps track of what aspects you think each ingredient has.  Each ingredient has two aspects - a Food Group aspect and an Elemental aspect.\n\nA warning icon next to an ingredient means that you have guessed more than one Food Group aspect or more than one Elemental aspect.  Each ingredient has only one of each!");
+        GameObject.FindObjectOfType<HelpTextController>().showText("Ingredients Panel", "This panel keeps track of ingredients you have used and what aspects you think they have.  Each ingredient has a Food Group aspect.  Some ingredients also have an Elemental aspect.\n\nA warning icon next to an ingredient means that you have guessed more than one Food Group aspect or more than one Elemental aspect.  Each ingredient can have only one of each!");
     }
 }

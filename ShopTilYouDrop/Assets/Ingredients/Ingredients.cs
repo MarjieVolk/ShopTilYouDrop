@@ -12,13 +12,23 @@ class Ingredients {
     }
 
     private Dictionary<IngredientType, IngredientData> ingredients;
+    private HashSet<IngredientType> seenIngredients;
 
     Ingredients() {
         ingredients = new Dictionary<IngredientType, IngredientData>();
+        seenIngredients = new HashSet<IngredientType>();
 
         foreach (IngredientType type in Enum.GetValues(typeof(IngredientType))) {
             add(type, type.GetPrimaryAspect(), type.GetSecondaryAspect());
         }
+    }
+
+    public void addSeenIngredient(IngredientType type) {
+        seenIngredients.Add(type);
+    }
+
+    public HashSet<IngredientType> getSeenIngredients() {
+        return new HashSet<IngredientType>(seenIngredients);
     }
 
     public IngredientData getIngredient(IngredientType type) {

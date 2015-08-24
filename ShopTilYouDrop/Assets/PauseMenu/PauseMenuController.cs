@@ -5,11 +5,13 @@ using System.Collections.Generic;
 public class PauseMenuController : MonoBehaviour {
 
     private PotionMenuController potionMenu;
+    private IngredientMenuController ingredientMenu;
     private GameObject pauseMenu;
 
 	// Use this for initialization
     void Start() {
         potionMenu = GameObject.FindObjectOfType<PotionMenuController>();
+        ingredientMenu = GameObject.FindObjectOfType<IngredientMenuController>();
         pauseMenu = transform.Find("Pause Menu").gameObject;
         pauseMenu.SetActive(false);
 	}
@@ -20,15 +22,12 @@ public class PauseMenuController : MonoBehaviour {
             Time.timeScale = 0;
             pauseMenu.SetActive(true);
             potionMenu.showPotionsTab();
+            ingredientMenu.showIngredientTab();
         }
 	}
 
     public void onClickResume() {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
-    }
-
-    private void showIngredientsTab() {
-        
     }
 }

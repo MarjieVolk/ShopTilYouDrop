@@ -30,8 +30,6 @@ class Potions {
         primaries.Add(primary2);
         primaries.Add(primary3);
 
-        Debug.Log("Created potion with primary key: " + primaries);
-
         if (!potions.ContainsKey(primaries)) {
             potions.Add(primaries, new List<Potion>());
         }
@@ -40,7 +38,6 @@ class Potions {
     }
 
     public Potion createPotion(IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
-        Debug.Log("Creating potion with " + ingredient1 + ", " + ingredient2 + ", " + ingredient3);
         IngredientData data1 = Ingredients.instance().getIngredient(ingredient1);
         IngredientData data2 = Ingredients.instance().getIngredient(ingredient2);
         IngredientData data3 = Ingredients.instance().getIngredient(ingredient3);
@@ -65,6 +62,9 @@ class Potions {
 
     private void logPotionCreation(Potion potionMade, IngredientType ingredient1, IngredientType ingredient2, IngredientType ingredient3) {
         createdPotions.Add(new CreatedPotion(potionMade, ingredient1, ingredient2, ingredient3));
+        Ingredients.instance().addSeenIngredient(ingredient1);
+        Ingredients.instance().addSeenIngredient(ingredient2);
+        Ingredients.instance().addSeenIngredient(ingredient3);
     }
 
     private Potion getBestMatch(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, MultiSet<Aspects.Secondary> secondaries) {
@@ -73,11 +73,7 @@ class Potions {
         primaries.Add(primary2);
         primaries.Add(primary3);
 
-        Debug.Log("Primaries:" + primaries);
-        Debug.Log("Secondaries:" + secondaries);
-
         if (!potions.ContainsKey(primaries)) {
-            Debug.Log("No key for " + primaries.ToString());
             return defaultPotion;
         }
 
