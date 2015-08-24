@@ -20,10 +20,10 @@ class Potions {
         potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>(new MultiSetComparer());
         createdPotions = new List<CreatedPotion>();
 
-        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new List<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
+        defaultPotion = new Potion(Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, Aspects.Primary.UNKNOWN, new MultiSet<Aspects.Secondary>(), PotionSlot.NONE, Aspects.Secondary.NONE, null);
     }
 
-    public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+    public void add(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3, MultiSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
         Potion potion = new Potion(primary1, primary2, primary3, secondaries, slot, type, effect);
         MultiSet<Aspects.Primary> primaries = new MultiSet<Aspects.Primary>();
         primaries.Add(primary1);

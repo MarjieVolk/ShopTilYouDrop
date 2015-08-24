@@ -26,7 +26,7 @@ public class Potion {
     private Effect _effect;
 
     public Potion(Aspects.Primary primary1, Aspects.Primary primary2, Aspects.Primary primary3,
-                  List<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
+                  MultiSet<Aspects.Secondary> secondaries, PotionSlot slot, Aspects.Secondary type, Effect effect) {
         primaries = new MultiSet<Aspects.Primary>();
         primaries.Add(primary1);
         primaries.Add(primary2);
