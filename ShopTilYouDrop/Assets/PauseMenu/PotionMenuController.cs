@@ -56,7 +56,9 @@ public class PotionMenuController : MonoBehaviour {
             bodyPartImage2.gameObject.SetActive(false);
 
             BodyPart[] parts = potion.getPotion().getAffectedBodyParts();
+
             if (parts.Length > 0) {
+                Debug.Log("Adding potion with affected part " + parts[0]);
                 Sprite sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[0]);
 
                 // Special cases for wings and tail
@@ -65,15 +67,18 @@ public class PotionMenuController : MonoBehaviour {
                 } else if (sprite == null && parts[0] == BodyPart.TAIL) {
                     sprite = noTailSprite;
                 } else {
-                    bodyPartImage2.gameObject.SetActive(sprite != null);
+                    bodyPartImage1.gameObject.SetActive(sprite != null);
                 }
 
                 bodyPartImage1.sprite = sprite;
             }
             if (parts.Length > 1) {
+                Debug.Log("Adding potion with affected part 2 " + parts[1]);
                 bodyPartImage2.gameObject.SetActive(true);
                 bodyPartImage2.sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[1]);
             }
+
+            Debug.Log("Sprite 2 visible: " + bodyPartImage2.IsActive());
 
             int j = 1;
             foreach (Aspects.Primary primary in potion.getPotion().getPrimaries()) {
