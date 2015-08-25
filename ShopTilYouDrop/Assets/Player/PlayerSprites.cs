@@ -40,4 +40,13 @@ class PlayerSprites {
         }
     }
 
+    public Aspects.Secondary getAspect(BodyPart bodyPart, Sprite sprite)
+    {
+        foreach (Aspects.Secondary aspect in Enum.GetValues(typeof(Aspects.Secondary)))
+        {
+            if (sprites[aspect][bodyPart] == sprite) return aspect;
+        }
+
+        throw new ArgumentException("The given sprite " + sprite + " is not registered as a player sprite.");
+    }
 }

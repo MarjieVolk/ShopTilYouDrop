@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class GameStageSwitcher : MonoBehaviour {
 
@@ -7,10 +8,12 @@ public class GameStageSwitcher : MonoBehaviour {
 
     private int currentStage = 1;
     private GameObject generators;
+    private PlayerSpriteController playerSpriteController;
 
 	// Use this for initialization
 	void Start () {
         generators = Instantiate(stageOneGenerators);
+        playerSpriteController = FindObjectOfType<PlayerSpriteController>();
 	}
 	
 	// Update is called once per frame
@@ -27,10 +30,40 @@ public class GameStageSwitcher : MonoBehaviour {
 	}
 
     private bool switchToStageTwo() {
-        return false;
+        return numChangedBodyParts() >= 3;
     }
 
     private bool switchToStageThree() {
-        return false;
+        return numAdvancedBodyParts() >= 3;
+    }
+
+    private int numAdvancedBodyParts()
+    {
+        int ret = 0;
+        foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
+        {
+            Aspects.Secondary aspect = playerSpriteController.GetAspectForBodyPart(part);
+            if (aspect != Aspects.Secondary.NONE && aspect != Aspects.Secondary.BASIC && aspect != Aspects.Secondary.UNKNOWN)
+            {
+                ret++;
+            }
+        }
+
+        return ret;
+    }
+
+    private int numChangedBodyParts()
+    {
+        int ret = 0;
+        foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
+        {
+            Aspects.Secondary aspect = playerSpriteController.GetAspectForBodyPart(part);
+            if (aspect != Aspects.Secondary.UNKNOWN)
+            {
+                ret++;
+            }
+        }
+
+        return ret;
     }
 }
