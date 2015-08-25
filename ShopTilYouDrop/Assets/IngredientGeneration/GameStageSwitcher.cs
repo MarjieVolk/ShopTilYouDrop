@@ -30,24 +30,24 @@ public class GameStageSwitcher : MonoBehaviour {
             Destroy(generators);
             generators = Instantiate(stageTwoGenerators);
         }
-        numAdvParts = numAdvancedBodyParts();
-        numChParts = numChangedBodyParts();
+        numAdvParts = numAdvancedPotionSlots();
+        numChParts = numChangedPotionSlots();
 	}
 
     private bool switchToStageTwo() {
-        return numChangedBodyParts() >= 3;
+        return numChangedPotionSlots() >= 3;
     }
 
     private bool switchToStageThree() {
-        return numAdvancedBodyParts() >= 3;
+        return numAdvancedPotionSlots() >= 3;
     }
 
-    private int numAdvancedBodyParts()
+    private int numAdvancedPotionSlots()
     {
         int ret = 0;
-        foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
+        foreach (PotionSlot potionSlot in Enum.GetValues(typeof(PotionSlot)))
         {
-            Aspects.Secondary? aspect = playerSpriteController.GetAspectForBodyPart(part);
+            Aspects.Secondary? aspect = playerSpriteController.GetAspectForPotionSlot(potionSlot);
             if (aspect != null && aspect != Aspects.Secondary.NONE && aspect != Aspects.Secondary.BASIC && aspect != Aspects.Secondary.UNKNOWN)
             {
                 ret++;
@@ -57,12 +57,12 @@ public class GameStageSwitcher : MonoBehaviour {
         return ret;
     }
 
-    private int numChangedBodyParts()
+    private int numChangedPotionSlots()
     {
         int ret = 0;
-        foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
+        foreach (PotionSlot slot in Enum.GetValues(typeof(PotionSlot)))
         {
-            Aspects.Secondary? aspect = playerSpriteController.GetAspectForBodyPart(part);
+            Aspects.Secondary? aspect = playerSpriteController.GetAspectForPotionSlot(slot);
             if (aspect != null && aspect != Aspects.Secondary.UNKNOWN)
             {
                 ret++;
