@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Audio;
+using System;
 
-public class AudioSwitcher : MonoBehaviour {
+public class AudioSwitcher : MonoBehaviour
+{
+    private int numLocks = 0;
 
     public AudioMixerSnapshot levelMusic;
     public AudioSource LevelMusicSource;
@@ -13,6 +16,46 @@ public class AudioSwitcher : MonoBehaviour {
 
     private AudioMixerSnapshot current;
 
+    private void Pause()
+    {
+        Time.timeScale = TimeWarpingFactor;
+        current = pauseMusic;
+        PauseMusicSource.UnPause();
+        current.TransitionTo(TransitionSeconds * TimeWarpingFactor);
+        StartCoroutine(RepauseLater(TransitionSeconds * TimeWarpingFactor));
+        StartCoroutine(PauseMusic(LevelMusicSource, current, TransitionSeconds * TimeWarpingFactor));
+    }
+
+    private void UnPause()
+    {
+        Time.timeScale = 1;
+        current = levelMusic;
+        LevelMusicSource.UnPause();
+        current.TransitionTo(TransitionSeconds);
+        StartCoroutine(PauseMusic(PauseMusicSource, current, TransitionSeconds * TimeWarpingFactor));
+    }
+
+    public void AddPause()
+    {
+        Debug.Log(new System.Diagnostics.StackTrace());
+        if (numLocks == 0)
+        {
+            Pause();
+        }
+        numLocks++;
+    }
+
+    public void RemovePause()
+    {
+        Debug.Log(new System.Diagnostics.StackTrace());
+        if (numLocks == 0)
+        {
+            throw new InvalidOperationException();
+        }
+        numLocks--;
+        if (numLocks == 0) UnPause();
+    }
+
 	// Use this for initialization
 	void Start () {
         current = levelMusic;
@@ -20,28 +63,7 @@ public class AudioSwitcher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Time.timeScale <= TimeWarpingFactor)
-        {
-            if (current == levelMusic)
-            {
-                Time.timeScale = TimeWarpingFactor;
-                current = pauseMusic;
-                PauseMusicSource.UnPause();
-                current.TransitionTo(TransitionSeconds * TimeWarpingFactor);
-                StartCoroutine(RepauseLater(TransitionSeconds * TimeWarpingFactor));
-                StartCoroutine(PauseMusic(LevelMusicSource, current, TransitionSeconds * TimeWarpingFactor));
-            }
-        }
-        else
-        {
-            if (current == pauseMusic)
-            {
-                current = levelMusic;
-                LevelMusicSource.UnPause();
-                current.TransitionTo(TransitionSeconds);
-                StartCoroutine(PauseMusic(PauseMusicSource, current, TransitionSeconds * TimeWarpingFactor));
-            }
-        }
+
 	}
 
     IEnumerator RepauseLater(float time)
