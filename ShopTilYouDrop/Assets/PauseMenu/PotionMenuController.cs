@@ -30,14 +30,13 @@ public class PotionMenuController : MonoBehaviour {
                 foreach (Aspects.Secondary aspect in secondaries)
                 {
                     GameObject icon = potionDisplay.transform.Find("Potion Details/Aspect Icons Secondary/Aspect " + (i + 1)).gameObject;
-                    if (i < secondaries.Count)
-                    {
-                        icon.GetComponent<Image>().sprite = Aspects.instance().getNormalSprite(aspect);
-                    }
-                    else
-                    {
-                        Destroy(icon);
-                    }
+                    icon.GetComponent<Image>().sprite = Aspects.instance().getNormalSprite(aspect);
+                    i++;
+                }
+
+                while (i < 3) {
+                    GameObject icon = potionDisplay.transform.Find("Potion Details/Aspect Icons Secondary/Aspect " + (i + 1)).gameObject;
+                    Destroy(icon);
                     i++;
                 }
             }

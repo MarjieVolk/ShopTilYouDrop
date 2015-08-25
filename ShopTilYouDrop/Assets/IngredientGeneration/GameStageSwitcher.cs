@@ -28,7 +28,7 @@ public class GameStageSwitcher : MonoBehaviour {
         } else if (currentStage == 2 && switchToStageThree()) {
             currentStage++;
             Destroy(generators);
-            generators = Instantiate(stageTwoGenerators);
+            generators = Instantiate(stageThreeGenerators);
         }
         numAdvParts = numAdvancedBodyParts();
         numChParts = numChangedBodyParts();
