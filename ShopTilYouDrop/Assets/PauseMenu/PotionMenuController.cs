@@ -8,6 +8,8 @@ public class PotionMenuController : MonoBehaviour {
     public GameObject lineItemWithSecondariesPrefab;
 
     public Sprite dudPotionSprite;
+    public Sprite noWingsSprite;
+    public Sprite noTailSprite;
 
     public void showPotionsTab() {
         foreach (Transform child in gameObject.transform) {
@@ -55,7 +57,18 @@ public class PotionMenuController : MonoBehaviour {
 
             BodyPart[] parts = potion.getPotion().getAffectedBodyParts();
             if (parts.Length > 0) {
-                bodyPartImage1.sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[0]);
+                Sprite sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[0]);
+
+                // Special cases for wings and tail
+                if (sprite == null && parts[0] == BodyPart.WINGS) {
+                    sprite = noWingsSprite;
+                } else if (sprite == null && parts[0] == BodyPart.TAIL) {
+                    sprite = noTailSprite;
+                } else {
+                    bodyPartImage2.gameObject.SetActive(sprite != null);
+                }
+
+                bodyPartImage1.sprite = sprite;
             }
             if (parts.Length > 1) {
                 bodyPartImage2.gameObject.SetActive(true);
