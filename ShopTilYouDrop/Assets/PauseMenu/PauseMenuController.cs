@@ -19,12 +19,16 @@ public class PauseMenuController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space)) {
-            Time.timeScale = 0;
-            pauseMenu.SetActive(true);
-            potionMenu.showPotionsTab();
-            ingredientMenu.showIngredientTab();
+            pause();
         }
 	}
+
+    public void pause() {
+        Time.timeScale = 0;
+        pauseMenu.SetActive(true);
+        potionMenu.showPotionsTab();
+        ingredientMenu.showIngredientTab();
+    }
 
     public void onClickResume() {
         Time.timeScale = 1;

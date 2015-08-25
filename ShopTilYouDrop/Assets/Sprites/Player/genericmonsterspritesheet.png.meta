@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 021413a4de5bb2847b51418b2dcf3f9d
-timeCreated: 1440462350
+timeCreated: 1440464333
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,6 +10,9 @@ TextureImporter:
     21300006: arm_r
     21300008: arm_l
     21300010: torso
+    21300012: genericmonsterspritesheet_0
+    21300014: genericmonsterspritesheet_1
+    21300016: genericmonsterspritesheet_2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -55,7 +58,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: head
+    - name: genericmonsterspritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -63,9 +66,9 @@ TextureImporter:
         width: 140
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_r
+    - name: genericmonsterspritesheet_1
       rect:
         serializedVersion: 2
         x: 140
@@ -73,29 +76,9 @@ TextureImporter:
         width: 140
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_l
-      rect:
-        serializedVersion: 2
-        x: 279
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_r
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 140
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_l
+    - name: genericmonsterspritesheet_2
       rect:
         serializedVersion: 2
         x: 0
@@ -103,17 +86,7 @@ TextureImporter:
         width: 140
         height: 140
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: torso
-      rect:
-        serializedVersion: 2
-        x: 140
-        y: 0
-        width: 140
-        height: 140
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

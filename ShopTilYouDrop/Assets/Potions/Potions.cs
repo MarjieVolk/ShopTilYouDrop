@@ -49,6 +49,10 @@ class Potions {
 
         Potion createdPotion = getBestMatch(data1.primary, data2.primary, data3.primary, secondaries);
         logPotionCreation(createdPotion, ingredient1, ingredient2, ingredient3);
+
+        if (createdPotions.Count <= 1) {
+            GameObject.FindObjectOfType<PauseMenuController>().pause();
+        }
         return createdPotion;
     }
 
