@@ -52,11 +52,12 @@ public class PlayerSpriteController : MonoBehaviour {
         partTransform.GetComponent<SpriteRenderer>().sprite = PlayerSprites.instance().getSprite(type, part);
     }
 
-    public Aspects.Secondary? GetAspectForBodyPart(BodyPart part)
+    public Aspects.Secondary? GetAspectForPotionSlot(PotionSlot slot)
     {
-        Transform partTransform = bodyPartToTransform(part);
+        BodyPart[] parts = slot.ToBodyParts();
+        Transform partTransform = bodyPartToTransform(parts[0]);
 
-        return PlayerSprites.instance().getAspect(part, partTransform.GetComponent<SpriteRenderer>().sprite);
+        return PlayerSprites.instance().getAspect(parts[0], partTransform.GetComponent<SpriteRenderer>().sprite);
     }
 
     private Transform bodyPartToTransform(BodyPart part)
