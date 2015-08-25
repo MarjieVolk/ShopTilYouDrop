@@ -93,6 +93,19 @@ public class IngredientMenuController : MonoBehaviour {
         GameObject iconButton = lineItemInstance.transform.Find(childName).gameObject;
         iconButton.GetComponent<Image>().sprite = Aspects.instance().getGreyedSprite(aspect);
 
+        IngredientData.GuessState currentGuess = Ingredients.instance().getIngredient(ingredient).getGuessState(aspect);
+        switch (currentGuess) {
+            case IngredientData.GuessState.UNKNOWN:
+                iconButton.GetComponent<Image>().sprite = Aspects.instance().getGreyedSprite(aspect);
+                break;
+            case IngredientData.GuessState.HAS:
+                iconButton.GetComponent<Image>().sprite = Aspects.instance().getNormalSprite(aspect);
+                break;
+            case IngredientData.GuessState.NOT_HAS:
+                iconButton.GetComponent<Image>().sprite = Aspects.instance().getDisabledSprite(aspect);
+                break;
+        }
+
         iconButton.GetComponent<Button>().onClick.AddListener(() => {
             IngredientData data = Ingredients.instance().getIngredient(ingredient);
             IngredientData.GuessState guess = data.getGuessState(aspect);

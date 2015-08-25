@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 021413a4de5bb2847b51418b2dcf3f9d
-timeCreated: 1440465430
+timeCreated: 1440476143
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,7 +13,8 @@ TextureImporter:
     21300012: face
     21300014: head
     21300016: arm_l
-    21300018: genericmonsterspritesheet_6
+    21300018: leg_r
+    21300020: genericmonsterspritesheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,7 +74,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 140
-        y: 420
+        y: 419
         width: 140
         height: 140
       alignment: 0
@@ -99,7 +100,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: leg_l
+    - name: arm_r
       rect:
         serializedVersion: 2
         x: 0
@@ -109,7 +110,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: arm_r
+    - name: leg_l
       rect:
         serializedVersion: 2
         x: 140
@@ -119,10 +120,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: genericmonsterspritesheet_6
+    - name: leg_r
       rect:
         serializedVersion: 2
-        x: 0
+        x: 280
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: genericmonsterspritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 140
         y: 140
         width: 140
         height: 140

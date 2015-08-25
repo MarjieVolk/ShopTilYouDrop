@@ -71,8 +71,8 @@ public class PotionMenuController : MonoBehaviour {
                 bodyPartImage1.sprite = sprite;
             }
             if (parts.Length > 1) {
-                bodyPartImage2.gameObject.SetActive(true);
                 bodyPartImage2.sprite = PlayerSprites.instance().getSprite(potion.getPotion().getType(), parts[1]);
+                bodyPartImage2.gameObject.SetActive(bodyPartImage2.sprite != null);
             }
 
             int j = 1;

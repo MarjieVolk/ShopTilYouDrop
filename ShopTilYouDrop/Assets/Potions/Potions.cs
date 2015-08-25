@@ -15,6 +15,7 @@ class Potions {
     private Dictionary<MultiSet<Aspects.Primary>, List<Potion>> potions;
     private List<CreatedPotion> createdPotions;
     private Potion defaultPotion;
+    private bool hasDoneAutoPause = false;
 
     Potions() {
         potions = new Dictionary<MultiSet<Aspects.Primary>, List<Potion>>();
@@ -50,7 +51,8 @@ class Potions {
         Potion createdPotion = getBestMatch(data1.primary, data2.primary, data3.primary, secondaries);
         logPotionCreation(createdPotion, ingredient1, ingredient2, ingredient3);
 
-        if (createdPotions.Count <= 1) {
+        if (!hasDoneAutoPause && createdPotion != defaultPotion) {
+            hasDoneAutoPause = true;
             GameObject.FindObjectOfType<PauseMenuController>().pause();
         }
         return createdPotion;
