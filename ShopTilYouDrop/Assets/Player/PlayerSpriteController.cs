@@ -47,8 +47,23 @@ public class PlayerSpriteController : MonoBehaviour {
     }
 
     public void setBodyPart(BodyPart part, Aspects.Secondary type) {
+        Transform partTransform = bodyPartToTransform(part);
+
+        partTransform.GetComponent<SpriteRenderer>().sprite = PlayerSprites.instance().getSprite(type, part);
+    }
+
+    public Aspects.Secondary GetAspectForBodyPart(BodyPart part)
+    {
+        Transform partTransform = bodyPartToTransform(part);
+
+        return PlayerSprites.instance().getAspect(part, partTransform.GetComponent<SpriteRenderer>().sprite);
+    }
+
+    private Transform bodyPartToTransform(BodyPart part)
+    {
         Transform partTransform;
-        switch (part) {
+        switch (part)
+        {
             case BodyPart.HEAD:
                 partTransform = transform.Find("Head");
                 break;
@@ -80,8 +95,7 @@ public class PlayerSpriteController : MonoBehaviour {
             default:
                 throw new Exception("Unexpected enum value " + part);
         };
-
-        partTransform.GetComponent<SpriteRenderer>().sprite = PlayerSprites.instance().getSprite(type, part);
+        return partTransform;
     }
 
     public void setHeadWizard() {
