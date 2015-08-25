@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 021413a4de5bb2847b51418b2dcf3f9d
-timeCreated: 1440464333
+timeCreated: 1440465430
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -10,9 +10,10 @@ TextureImporter:
     21300006: arm_r
     21300008: arm_l
     21300010: torso
-    21300012: genericmonsterspritesheet_0
-    21300014: genericmonsterspritesheet_1
-    21300016: genericmonsterspritesheet_2
+    21300012: face
+    21300014: head
+    21300016: arm_l
+    21300018: genericmonsterspritesheet_6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -58,31 +59,71 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: genericmonsterspritesheet_0
+    - name: face
       rect:
         serializedVersion: 2
         x: 0
-        y: 140
+        y: 420
         width: 140
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: genericmonsterspritesheet_1
+    - name: head
       rect:
         serializedVersion: 2
         x: 140
-        y: 140
+        y: 420
         width: 140
         height: 140
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: genericmonsterspritesheet_2
+    - name: arm_l
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 420
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: torso
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 420
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: leg_l
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: arm_r
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 280
+        width: 140
+        height: 140
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: genericmonsterspritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 140
         width: 140
         height: 140
       alignment: 0
