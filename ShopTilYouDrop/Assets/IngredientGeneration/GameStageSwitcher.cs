@@ -10,6 +10,9 @@ public class GameStageSwitcher : MonoBehaviour {
     private GameObject generators;
     private PlayerSpriteController playerSpriteController;
 
+    private int numAdvParts;
+    private int numChParts;
+
 	// Use this for initialization
 	void Start () {
         generators = Instantiate(stageOneGenerators);
@@ -27,6 +30,8 @@ public class GameStageSwitcher : MonoBehaviour {
             Destroy(generators);
             generators = Instantiate(stageTwoGenerators);
         }
+        numAdvParts = numAdvancedBodyParts();
+        numChParts = numChangedBodyParts();
 	}
 
     private bool switchToStageTwo() {
@@ -42,8 +47,8 @@ public class GameStageSwitcher : MonoBehaviour {
         int ret = 0;
         foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
         {
-            Aspects.Secondary aspect = playerSpriteController.GetAspectForBodyPart(part);
-            if (aspect != Aspects.Secondary.NONE && aspect != Aspects.Secondary.BASIC && aspect != Aspects.Secondary.UNKNOWN)
+            Aspects.Secondary? aspect = playerSpriteController.GetAspectForBodyPart(part);
+            if (aspect != null && aspect != Aspects.Secondary.NONE && aspect != Aspects.Secondary.BASIC && aspect != Aspects.Secondary.UNKNOWN)
             {
                 ret++;
             }
@@ -57,8 +62,8 @@ public class GameStageSwitcher : MonoBehaviour {
         int ret = 0;
         foreach (BodyPart part in Enum.GetValues(typeof(BodyPart)))
         {
-            Aspects.Secondary aspect = playerSpriteController.GetAspectForBodyPart(part);
-            if (aspect != Aspects.Secondary.UNKNOWN)
+            Aspects.Secondary? aspect = playerSpriteController.GetAspectForBodyPart(part);
+            if (aspect != null && aspect != Aspects.Secondary.UNKNOWN)
             {
                 ret++;
             }

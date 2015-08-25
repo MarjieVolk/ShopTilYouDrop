@@ -52,7 +52,7 @@ public class PlayerSpriteController : MonoBehaviour {
         partTransform.GetComponent<SpriteRenderer>().sprite = PlayerSprites.instance().getSprite(type, part);
     }
 
-    public Aspects.Secondary GetAspectForBodyPart(BodyPart part)
+    public Aspects.Secondary? GetAspectForBodyPart(BodyPart part)
     {
         Transform partTransform = bodyPartToTransform(part);
 
@@ -68,7 +68,6 @@ public class PlayerSpriteController : MonoBehaviour {
                 partTransform = transform.Find("Head");
                 break;
             case BodyPart.FACE:
-                Debug.Log("Setting face");
                 partTransform = transform.Find("Face");
                 break;
             case BodyPart.LEFT_ARM:

@@ -40,13 +40,22 @@ class PlayerSprites {
         }
     }
 
-    public Aspects.Secondary getAspect(BodyPart bodyPart, Sprite sprite)
+    public Aspects.Secondary? getAspect(BodyPart bodyPart, Sprite sprite)
     {
+        if (sprite == null) return null;
+
         foreach (Aspects.Secondary aspect in Enum.GetValues(typeof(Aspects.Secondary)))
         {
-            if (sprites[aspect][bodyPart] == sprite) return aspect;
+            if (!sprites.ContainsKey(aspect) || !sprites[aspect].ContainsKey(bodyPart))
+            {
+                //Debug.Log("No entry for part " + bodyPart + " and aspect " + aspect);
+            }
+            else
+            {
+                if (sprites[aspect][bodyPart] == sprite) return aspect;
+            }
         }
 
-        throw new ArgumentException("The given sprite " + sprite + " is not registered as a player sprite.");
+        return null;
     }
 }
