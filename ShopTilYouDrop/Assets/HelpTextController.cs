@@ -6,14 +6,17 @@ public class HelpTextController : MonoBehaviour {
 
     private GameObject tutorialPanel;
     private Text title, body;
+    private AudioSwitcher pauser;
 
 	void Start () {
+        pauser = GameObject.FindObjectOfType<AudioSwitcher>();
         tutorialPanel = transform.Find("Help Text").gameObject;
         tutorialPanel.SetActive(false);
         title = tutorialPanel.transform.Find("Title").GetComponent<Text>();
         body = tutorialPanel.transform.Find("Body").GetComponent<Text>();
 
         tutorialPanel.transform.Find("Button").GetComponent<Button>().onClick.AddListener(() => {
+            pauser.RemovePause();
             tutorialPanel.SetActive(false);
         });
 
@@ -24,5 +27,6 @@ public class HelpTextController : MonoBehaviour {
         this.title.text = title;
         this.body.text = body;
         tutorialPanel.SetActive(true);
+        pauser.AddPause();
     }
 }
