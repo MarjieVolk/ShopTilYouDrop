@@ -55,6 +55,10 @@ public class PlayerSpriteController : MonoBehaviour {
     public Aspects.Secondary? GetAspectForPotionSlot(PotionSlot slot)
     {
         BodyPart[] parts = slot.ToBodyParts();
+        if (parts.Length == 0) {
+            return null;
+        }
+
         Transform partTransform = bodyPartToTransform(parts[0]);
 
         return PlayerSprites.instance().getAspect(parts[0], partTransform.GetComponent<SpriteRenderer>().sprite);

@@ -34,4 +34,8 @@ public class PauseMenuController : MonoBehaviour {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
     }
+
+    public void onClickExit() {
+        Application.Quit();
+    }
 }
